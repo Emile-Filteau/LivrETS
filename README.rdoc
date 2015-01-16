@@ -7,7 +7,7 @@ Run server : ```rails server```
 
 === System dependencies
 Ruby, Rails, Rake
-run ```rake Rakefile``` to install dependencies
+run ```bundle install``` to install dependencies
 
 === Configuration
 
