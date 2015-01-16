@@ -2,27 +2,27 @@
 
 Run server : ```rails server```
 
-* Ruby version
+=== Ruby version
 1.9.3
 
-* System dependencies
+=== System dependencies
 Ruby, Rails, Rake
 run ```rake Rakefile``` to install dependencies
 
-* Configuration
+=== Configuration
 
-* Database creation
+=== Database creation
 Dev : To create the sqlite database run : 
 ```rake db:migrate```
 
-* Database initialization
+=== Database initialization
 Dev : To initialize databse or apply migrations run : 
 ```rake db:migrate```
 
-* How to run the test suite
+=== How to run the test suite
 Don't know yet :confused:
 
 
-* Deployment instructions
+=== Deployment instructions
 Heroku app will be liked to github repo
 Instructions will be added soon
