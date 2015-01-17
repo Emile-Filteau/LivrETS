@@ -2,13 +2,36 @@
 <html>
 <head>
   <title>ETSBooks</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'bootstrap.min', media: 'all', 'data-turbolinks-track' => true %>
+
+  <!--<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>-->
+
+  <%= javascript_include_tag 'jquery.min', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div class="container">
+  <h1 class="col-lg-8">ETSBook</h1>
+
+  <%= link_to 'Ajouter un livre', new_book_path, html_options = {class: 'btn btn-primary col-lg-2'} %>
+</div>
+
+<div class="container">
+    <%= form_for :book, url: search_books_path  do |f| %>
+        <div class="input-group">
+          <%= f.text_field :criteria, html_options = {class: 'form-control'}%>
+          <span class="input-group-btn"><button class="btn btn-ar btn-primary" type="submit" value="Recherche">Recherche</button>
+            </span>
+        </div>
+    <% end %>
+</div>
+
+<div class="container">
+    <%= yield %>
+</div>
 
 </body>
 </html>
