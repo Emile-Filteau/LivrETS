@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117161202) do
+ActiveRecord::Schema.define(version: 20150117173849) do
 
   create_table "books", force: true do |t|
     t.string   "name"
@@ -22,6 +22,28 @@ ActiveRecord::Schema.define(version: 20150117161202) do
     t.string   "contact_name"
     t.string   "validation_code"
     t.string   "contact_phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+    t.float    "price"
+    t.boolean  "activated"
+  end
+
+  add_index "books", ["course_id"], name: "index_books_on_course_id"
+
+  create_table "courses", force: true do |t|
+    t.string   "acronym"
+    t.string   "name"
+    t.integer  "program_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "courses", ["program_id"], name: "index_courses_on_program_id"
+
+  create_table "programs", force: true do |t|
+    t.string   "name"
+    t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
