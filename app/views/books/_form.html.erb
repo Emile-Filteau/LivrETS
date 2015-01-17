@@ -36,10 +36,7 @@
         <div class="form-group">
             <%= f.label :course, 'Cours', html_options = {class: 'col-sm-1 control-label'} %>
             <div class="col-sm-10">
-              <%= f.select :course , html_options = {class: 'form-control'} do %>
-                  <% course_array = Course.all.map { |course| [course.acronym, course.id] } %>
-                  <%= options_for_select(course_array) %>
-              <% end %>
+              <%= f.text_area :courses , html_options = {class: 'form-control course_selector'} %>
             </div>
         </div>
         <div class="form-group">
@@ -102,5 +99,17 @@
       <%= f.submit html_options = {class: 'btn btn-primary'} %>
     </div>
   </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".course_selector").tokenInput("<%= get_courses_json_courses_path %>", {
+                'theme': 'facebook',
+                tokenFormatter: function(item) {return "<li><p>" + item.name.split(' ')[0] + "</p></li>"}
+            });
+
+            $('.token-input-list-facebook').addClass('custom_token_selector')
+
+        });
+    </script>
 
 <% end %>
