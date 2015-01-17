@@ -104,10 +104,12 @@
         $(document).ready(function () {
             $(".course_selector").tokenInput("<%= get_courses_json_courses_path %>", {
                 'theme': 'facebook',
-                tokenFormatter: function(item) {return "<li><p>" + item.name.split(' ')[0] + "</p></li>"}
+                tokenFormatter: function(item) {return "<li><p>" + item.name.split(' ')[0] + "</p></li>"},
+                preventDuplicates: true
             });
 
             $('.token-input-list-facebook').addClass('custom_token_selector')
+            $('.token-input-list-facebook').addClass('form-control')
 
         });
     </script>
