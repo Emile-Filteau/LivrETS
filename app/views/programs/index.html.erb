@@ -1,0 +1,27 @@
+<h1>Liste des programmes</h1>
+
+<%= link_to 'Nouveau programme', new_program_path %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sigle</th>
+      <th>Nom du programme</th>
+      <th># de cours</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programs.each do |program| %>
+      <tr>
+        <td><%= program.acronym %></td>
+        <td style="background-color:<%= program.color %>"><%= program.name %></td>
+        <td><%= program.courses.length %></td>
+        <td><%= link_to 'Show', program %></td>
+        <td><%= link_to 'Edit', edit_program_path(program) %></td>
+        <td><%= link_to 'Destroy', program, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

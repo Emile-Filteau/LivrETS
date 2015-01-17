@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150117201530) do
+=======
+ActiveRecord::Schema.define(version: 20150117192716) do
+>>>>>>> 47eb6f6baf346282a420461997b44df672d4b7c6
 
   create_table "books", force: true do |t|
     t.string   "name"
@@ -50,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150117201530) do
     t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "acronym"
   end
 
 end

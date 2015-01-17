@@ -1,16 +1,27 @@
 <h1>Liste des cours</h1>
 
+<%= link_to 'Nouveau cours', new_course_path %>
+
 <table class="table table-striped">
-    <thead>
-        </tr>
-            <th>Sigle</th>
-            <th>Nom du cours</th>
-        </tr>
-    </thead>
-<% @courses.each do |course| %>
+  <thead>
     <tr>
-      <td><%= course.acronym %></td>
-      <td><%= course.name %></td>
+      <th>Sigle</th>
+      <th>Nom du cours</th>
+      <th>Programme</th>
+      <th colspan="3"></th>
     </tr>
-<% end %>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.acronym %></td>
+        <td><%= course.name %></td>
+        <td><%= course.program.acronym %></td>
+        <td><%= link_to 'Show', course %></td>
+        <td><%= link_to 'Edit', edit_course_path(course) %></td>
+        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
