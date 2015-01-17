@@ -45,8 +45,10 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
-
-    #@book.course = Course.find(params[:course])
+    params.require(:book).permit(:courses)['courses'].split(',') do |course_id|
+      @book.courses << Course.find(course_id)
+      print(course_id)
+    end
 
     respond_to do |format|
       if @book.save
