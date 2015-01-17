@@ -13,7 +13,7 @@ class BooksController < ApplicationController
       course = Course.where("acronym = ?", params[:search]).first()
       if course
         # If it is a search by course (1 course only), and that course is found, return its books.
-        @books = Book.order(created_at: :desc) #course.books.order(created_at: :desc)
+        @books = course.books.order(created_at: :desc)
       else
         # Else, check for book names OR author names
         if params[:search].length >= 3
