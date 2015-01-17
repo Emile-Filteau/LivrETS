@@ -14,15 +14,15 @@
 <body>
 
 <div class="container">
-  <h1 class="col-lg-8">ETSBook</h1>
+  <h1>ETSBook</h1>
 
-  <%= link_to 'Ajouter un livre', new_book_path, html_options = {class: 'btn btn-primary col-lg-2'} %>
+  <%= link_to raw('<i class="glyphicon glyphicon-plus"> Ajouter un livre</i>'), new_book_path, html_options = {class: 'btn btn-success'} %>
 </div>
 
 <div class="container">
     <%= form_for :book, url: search_books_path  do |f| %>
         <div class="input-group">
-          <%= f.text_field :criteria, html_options = {class: 'form-control'}%>
+          <input type="text" class="form-control" name="criteria" placeholder="Sigle, Nom du livre...">
           <span class="input-group-btn"><button class="btn btn-ar btn-primary" type="submit" value="Recherche">Recherche</button>
             </span>
         </div>
