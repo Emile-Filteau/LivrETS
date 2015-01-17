@@ -49,8 +49,14 @@ class BooksController < ApplicationController
       @book.courses << Course.find(course_id)
     end
 
+    # Validation code
+    charset = [('a'..'z'), ('0'..'9'), ('A'..'Z')].map { |i| i.to_a }.flatten
+    validation_code = (0...50).map { charset[rand(charset.length)] }.join
+    @book.validation_code = validation_code
+
     respond_to do |format|
       if @book.save
+        UserMailer.information_email(@book).deliver!
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
@@ -97,6 +103,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :validation_code, :contact_phone, :photo, :price)
+      params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :contact_phone, :photo, :price)
     end
 end
