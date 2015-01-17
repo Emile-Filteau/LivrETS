@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'books#index'
   resources :books do
+    get 'search', on: :collection
     post 'search', on: :collection
   end
 

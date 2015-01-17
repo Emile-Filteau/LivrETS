@@ -14,7 +14,7 @@
 .books .book .photo img{
     display:block;
     margin:auto;
-    max-width:100%;
+    max-width:70%;
 }
 
 .books .book .info{

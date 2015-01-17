@@ -7,10 +7,23 @@ class BooksController < ApplicationController
     @books = Book.order(created_at: :desc)
   end
 
+  # GET /books/search
   def search
-    print(params[:search])
-    @books = Book.all
-    render @books
+    if params[:search].to_s != ''
+      course = Course.where("acronym = ?", params[:search]).first()
+      if course
+        # If it is a search by course (1 course only), and that course is found, return its books.
+        @books = Book.order(created_at: :desc) #course.books.order(created_at: :desc)
+      else
+        # Else, check for book names OR author names
+        if params[:search].length >= 3
+          query = '%' + params[:search] + '%'
+          @books = Book.where('name like ? OR author like ?', query, query).order(created_at: :desc)
+        end
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /books/1
