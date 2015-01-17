@@ -32,6 +32,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
+
+    #@book.course = Course.find(params[:course])
+
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
@@ -75,6 +78,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :validation_code, :contact_phone, :photo)
+      params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :validation_code, :contact_phone, :photo, :price)
     end
 end

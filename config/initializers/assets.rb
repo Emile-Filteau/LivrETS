@@ -9,3 +9,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 Rails.application.config.assets.precompile += %w( jquery.min.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
+Rails.application.config.assets.precompile += %w( token-input.css )
+Rails.application.config.assets.precompile += %w( token-input-facebook.css )
+Rails.application.config.assets.precompile += %w( jquery.tokeninput.js )

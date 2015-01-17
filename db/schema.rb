@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150117201530) do
-=======
-ActiveRecord::Schema.define(version: 20150117192716) do
->>>>>>> 47eb6f6baf346282a420461997b44df672d4b7c6
+ActiveRecord::Schema.define(version: 20150117203521) do
 
   create_table "books", force: true do |t|
     t.string   "name"
@@ -48,6 +44,13 @@ ActiveRecord::Schema.define(version: 20150117192716) do
   end
 
   add_index "courses", ["program_id"], name: "index_courses_on_program_id"
+
+  create_table "create_join_table_book_courses", force: true do |t|
+    t.string   "book"
+    t.string   "course"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "programs", force: true do |t|
     t.string   "name"

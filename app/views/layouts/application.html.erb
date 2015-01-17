@@ -3,12 +3,16 @@
 <head>
   <title>ETSBooks</title>
   <%= stylesheet_link_tag    'bootstrap.min', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'token-input', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'token-input-facebook', media: 'all', 'data-turbolinks-track' => true %>
 
   <!--<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>-->
 
   <%= javascript_include_tag 'jquery.min', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= javascript_include_tag 'jquery.tokeninput', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
