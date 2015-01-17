@@ -18,4 +18,5 @@
 # Ignore Jetbrain's RubyMine configs
 /.idea
 
-
+#Ignore books photo
+/public/system/books/photos/
