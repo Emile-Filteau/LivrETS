@@ -1,3 +1,4 @@
+#encoding: utf-8
 # Script to get the list of courses from etsmtl.ca
 # Ugly, but it works... for now.
 

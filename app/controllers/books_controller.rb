@@ -45,9 +45,8 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
-    params.require(:book).permit(:courses)['courses'].split(',') do |course_id|
+    for course_id in params[:book][:courses].split(',')
       @book.courses << Course.find(course_id)
-      print(course_id)
     end
 
     respond_to do |format|
@@ -64,6 +63,11 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+
+    for course_id in params[:book][:courses].split(',')
+      @book.courses << Course.find(course_id)
+    end
+
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
