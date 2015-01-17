@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :courses
+  resources :programs, :constraints => {:format => /(html)/}
+  resources :courses, :constraints => {:format => /(html)/}
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
