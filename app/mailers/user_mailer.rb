@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "books@etsbooks.com"
+  default from: Rails.application.config.smtp_from
 
   def information_email(book)
     @book = book
