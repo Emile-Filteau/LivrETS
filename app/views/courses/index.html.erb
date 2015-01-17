@@ -1,6 +1,12 @@
-<h1>Courses#index</h1>
+<h1>Liste des cours</h1>
 
-<table>
+<table class="table table-striped">
+    <thead>
+        </tr>
+            <th>Sigle</th>
+            <th>Nom du cours</th>
+        </tr>
+    </thead>
 <% @courses.each do |course| %>
     <tr>
       <td><%= course.acronym %></td>
