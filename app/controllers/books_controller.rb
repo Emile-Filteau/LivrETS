@@ -8,7 +8,9 @@ class BooksController < ApplicationController
   end
 
   def search
-
+    print(params[:search])
+    @books = Book.all
+    render @books
   end
 
   # GET /books/1
@@ -73,6 +75,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :validation_code, :contact_phone)
+      params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :validation_code, :contact_phone, :photo)
     end
 end

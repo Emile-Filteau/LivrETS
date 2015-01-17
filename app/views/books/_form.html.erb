@@ -1,6 +1,6 @@
-<%= form_for(@book) do |f| %>
+<%= form_for(@book, :html => {class: 'form-horizontal'}) do |f| %>
   <% if @book.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation alert alert-danger">
       <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
 
       <ul>
@@ -11,39 +11,96 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+
+  <div class="full_form">
+    <div class="book_form">
+        <h2>Infos sur le livre</h2>
+        <div class="form-group">
+            <%= f.label :name, 'Titre', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+                <%= f.text_field :name, html_options = {class: 'form-control'} %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :author, 'Auteur', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+                <%= f.text_field :author, html_options = {class: 'form-control'} %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :edition, 'Édition', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+                <%= f.text_field :edition , html_options = {class: 'form-control'}%>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :course, 'Cours', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+              <%= f.select :course , html_options = {class: 'form-control'} do %>
+                  <% course_array = Course.all.map { |course| [course.acronym, course.id] } %>
+                  <%= options_for_select(course_array) %>
+              <% end %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :state, 'État', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+                <%= f.radio_button(:state, 1, html_options = {class: 'col-sm-2'}) %>
+                <%= f.radio_button(:state, 2, html_options = {class: 'col-sm-2'}) %>
+                <%= f.radio_button(:state, 3, html_options = {class: 'col-sm-2'}) %>
+                <%= f.radio_button(:state, 4, html_options = {class: 'col-sm-2'}) %>
+                <%= f.radio_button(:state, 5, html_options = {class: 'col-sm-2'}) %>
+            </div>
+            <div class="col-sm-10 state_infos" style="text-align: center">
+                <%= label_tag(:book_state_1, "Poor", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_2, "Not bad", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_3, "Chipped", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_4, "Nice", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_5, "New", html_options = {class: 'col-sm-2'}) %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :price, 'Prix', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+              <%= f.number_field :price , html_options = {class: 'form-control'}%>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :photo, 'Photo', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+              <%= f.file_field :photo , html_options = {class: 'form-control'}%>
+            </div>
+        </div>
+    </div>
+
+    <div class="seller_form">
+        <h2>Informations du vendeur</h2>
+        <div class="form-group">
+            <%= f.label :contact_name, 'Nom', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+                <%= f.text_field :contact_name , html_options = {class: 'form-control'}%>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :email, 'Courriel', html_options = {class: 'col-sm-1 control-label'} %>
+            <div class="col-sm-10">
+                <%= f.email_field :email , html_options = {class: 'form-control'}%>
+            </div>
+        </div>
+        <div class="form-group">
+              <%= f.label :contact_phone, 'Téléphone', html_options = {class: 'col-sm-1 control-label'} %>
+              <div class="col-sm-10">
+                <%= f.phone_field :contact_phone , html_options = {class: 'form-control'}%>
+              </div>
+        </div>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit html_options = {class: 'btn btn-primary'} %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :author %><br>
-    <%= f.text_field :author %>
-  </div>
-  <div class="field">
-    <%= f.label :edition %><br>
-    <%= f.text_field :edition %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_name %><br>
-    <%= f.text_field :contact_name %>
-  </div>
-  <div class="field">
-    <%= f.label :validation_code %><br>
-    <%= f.text_field :validation_code %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_phone %><br>
-    <%= f.text_field :contact_phone %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

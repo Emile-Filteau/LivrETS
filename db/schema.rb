@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117173849) do
+ActiveRecord::Schema.define(version: 20150117201530) do
 
   create_table "books", force: true do |t|
     t.string   "name"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 20150117173849) do
     t.integer  "course_id"
     t.float    "price"
     t.boolean  "activated"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "books", ["course_id"], name: "index_books_on_course_id"
