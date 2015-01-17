@@ -1,0 +1,10 @@
+<h1>Courses#index</h1>
+
+<table>
+<% @courses.each do |course| %>
+    <tr>
+      <td><%= course.acronym %></td>
+      <td><%= course.name %></td>
+    </tr>
+<% end %>
+</table>
