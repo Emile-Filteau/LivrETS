@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.order(created_at: :desc)
+    @books = Book.where(activated: true).order(created_at: :desc)
   end
 
   # GET /books/search
@@ -18,7 +18,7 @@ class BooksController < ApplicationController
         # Else, check for book names OR author names
         if params[:search].length >= 3
           query = '%' + params[:search] + '%'
-          @books = Book.where('name like ? OR author like ?', query, query).order(created_at: :desc)
+          @books = Book.where('activated = 1 AND name like ? OR author like ?', query, query).order(created_at: :desc)
         end
       end
     else
