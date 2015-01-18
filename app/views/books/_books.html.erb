@@ -22,7 +22,7 @@
         <%= image_tag book.photo.url(:thumb) %>
       </div>
       <div class="info col-md-5">
-        <div class="title"><%= book.name %></div>
+        <div class="book-title"><%= book.name %></div>
         <% if book.author.to_s != '' %>
             <div class="author">
               <strong>Auteur:</strong>
@@ -36,10 +36,6 @@
             </div>
         <% end %>
         <div class="more_details"><%= link_to 'Plus de détails', book %></div>
-        (
-            <%= link_to 'Edit', edit_book_path(book) %>
-            <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
-        )
       </div>
       <div class="state col-md-1">
         <%= book.state %>
