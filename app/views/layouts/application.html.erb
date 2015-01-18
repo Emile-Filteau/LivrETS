@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>ETSBooks</title>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
   <%= stylesheet_link_tag    'bootstrap.min', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'token-input', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'token-input-facebook', media: 'all', 'data-turbolinks-track' => true %>
@@ -20,7 +22,7 @@
 <div class="container">
   <h1 class="title"><%= link_to 'LivrETS', root_path %></h1>
 
-  <%= link_to raw('+ Ajouter un livre'), new_book_path, html_options = {class: 'btn btn-success add_button'} %>
+  <%= link_to raw('<span class="fa fa-plus"></span> Ajouter un livre'), new_book_path, html_options = {class: 'btn btn-success add_button'} %>
   <div class="clear"></div>
 </div>
 
