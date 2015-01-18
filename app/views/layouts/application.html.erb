@@ -14,6 +14,12 @@
 
   <%= javascript_include_tag 'jquery.tokeninput', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <!-- JqueryUI Autocomplete -->
+  <script src="/js/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/js/jquery-ui-1.11.2.custom/jquery-ui.css"/>
+  <link rel="stylesheet" href="/js/jquery-ui-1.11.2.custom/jquery-ui.structure.css"/>
+  <link rel="stylesheet" href="/js/jquery-ui-1.11.2.custom/jquery-ui.theme.css"/>
 </head>
 <body>
 
@@ -27,7 +33,7 @@
 <div class="container">
     <%= form_for :book, url: search_books_path  do |f| %>
         <div class="input-group">
-          <input type="text" class="form-control" name="search" placeholder="Sigle, Nom du livre...">
+          <input type="text" class="form-control" name="search" id="search" placeholder="Sigle, Nom du livre...">
           <span class="input-group-btn"><button class="btn btn-ar btn-primary" type="submit" value="Recherche">Recherche</button>
             </span>
         </div>

@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   # GET /books/search
   def search
     if params[:search].to_s != ''
-      course = Course.where("acronym = ?", params[:search]).first()
+      course = Course.where("acronym = ?", params[:search][0..5].upcase).first()
       if course
         # If it is a search by course (1 course only), and that course is found, return its books.
         @books = course.books.order(created_at: :desc)
@@ -18,7 +18,7 @@ class BooksController < ApplicationController
         # Else, check for book names OR author names
         if params[:search].length >= 3
           query = '%' + params[:search] + '%'
-          @books = Book.where('activated = 1 AND name like ? OR author like ?', query, query).order(created_at: :desc)
+          @books = Book.where('name like ? OR author like ?', query, query).where(activated: true).order(created_at: :desc)
         end
       end
     else

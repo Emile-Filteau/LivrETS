@@ -7,6 +7,11 @@ class CoursesController < ApplicationController
   end
 
   def get_courses_json
+    if params[:q] == nil or params[:q].length == 0
+      @courses = Course.all
+      render json: @courses
+      return
+    end
     @courses = Course.where('acronym like ? OR name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').map { |course| {id: course.id, name: course.acronym + ' - ' + course.name} }
     render json: @courses
   end
