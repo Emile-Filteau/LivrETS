@@ -1,51 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="alert" id="notice"><%= notice %></div>
 
-<%= image_tag @book.photo.url(:medium) %>
+<div class="book_infos">
+    <%= image_tag @book.photo.url(:medium) %>
+    <h3><%= @book.name %></h3>
+    <% @book.courses.each do |course| %>
+      <span class="label label-primary"><%= course.acronym %></span>
+    <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @book.name %>
-</p>
 
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
+    <% if @book.author != "" %>
+      <h4><strong>Auteur : </strong><%= @book.author %></h4>
+    <% end %>
 
-<p>
-  <strong>Edition:</strong>
-  <%= @book.edition %>
-</p>
+    <% if @book.edition != "" %>
+      <h4><strong>Édition : </strong><%= @book.edition %></h4>
+    <% end %>
 
-<p>
-  <strong>State:</strong>
-  <%= @book.state %>
-</p>
+    <div class="contact_infos">
+        <p>
+            <strong>Vendeur :</strong>
+            <%= @book.contact_name %>
+        </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @book.email %>
-</p>
+        <% if @book.contact_phone != ''%>
+            <p>
+            <strong>Numéro de téléphone :</strong>
+            <%= @book.contact_phone %>
+            </p>
+        <% end %>
+    </div>
 
-<p>
-  <strong>Contact name:</strong>
-  <%= @book.contact_name %>
-</p>
+  <div class="clear"></div>
+</div>
 
-<p>
-  <strong>Validation code:</strong>
-  <%= @book.validation_code %>
-</p>
-
-<p>
-  <strong>Contact phone:</strong>
-  <%= @book.contact_phone %>
-</p>
-
-<strong>Courses</strong>
-<% @book.courses.each do |course| %>
-    <p><%= course.acronym %></p>
-<% end %>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<div class="col-sm-10 state_infos" style="text-align: center">
+  <label class="col-sm-2">Il manque des pages!</label>
+  <label class="col-sm-2">Mauvais état.</label>
+  <label class="col-sm-2">Usage normal, annoté</label>
+  <label class="col-sm-2">Usage normal, les coins un peu pliés</label>
+  <label class="col-sm-2">Comme neuf</label>
+</div>

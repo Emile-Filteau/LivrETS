@@ -1,3 +1,6 @@
+.clear {
+    clear: both;
+}
 .title {
     float:left;
     margin-bottom: 40px;
@@ -61,7 +64,24 @@
 
 .state_infos label {
     border:1px solid black;
-    cursor: pointer;
     height:100px;
     padding-top:30px;
+}
+
+.state_infos label.current {
+    background-color:#CCCCCC;
+}
+
+.book_infos h3 {
+    padding-top:30px;
+}
+
+.book_infos img {
+    max-width:250px;
+    float:left;
+    margin-right: 50px;
+}
+
+.book_full_form div {
+    
 }
