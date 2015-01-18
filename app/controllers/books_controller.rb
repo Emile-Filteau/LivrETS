@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :activate, :destroy]
 
   # GET /books
   # GET /books.json
@@ -38,6 +38,10 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    if params[:code] != @book.validation_code
+      redirect_to root_path
+      return
+    end
   end
 
   # POST /books
@@ -54,6 +58,7 @@ class BooksController < ApplicationController
     charset = [('a'..'z'), ('0'..'9'), ('A'..'Z')].map { |i| i.to_a }.flatten
     validation_code = (0...50).map { charset[rand(charset.length)] }.join
     @book.validation_code = validation_code
+    @book.activated = false
 
     respond_to do |format|
       if @book.save
@@ -70,6 +75,11 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+    if params[:code] != @book.validation_code
+      redirect_to root_path
+      return
+    end
+
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
@@ -84,9 +94,29 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
+    if params[:code] != @book.validation_code
+      redirect_to root_path
+      return
+    end
+
     @book.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  # GET /books/1/activate
+  def activate
+    if params[:code] != @book.validation_code
+      redirect_to root_path
+      return
+    end
+
+    @book.activated = true
+    @book.save
+    respond_to do |format|
+      format.html { redirect_to @book, notice: 'Book was successfully activated.' }
       format.json { head :no_content }
     end
   end

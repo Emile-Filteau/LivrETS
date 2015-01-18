@@ -3,4 +3,8 @@ Informations importantes sur votre annonce
 
 Une annonce pour le livre "<%= @book.name %>" (au prix de <%= @book.price %>) a été envoyée à ETSBook.
 
-Veuillez conserver ce e-mail afin de modifier ou supprimer votre annonce.
+Veuillez conserver ce e-mail afin de confirmer, modifier ou supprimer votre annonce.
+
+http://localhost:3000/books/<%= @book.id %>/edit?code=<%= @book.validation_code %>
+
+Note: Il faut que vous confirmiez votre annonce avant qu'elle ne soit affichée!

@@ -36,10 +36,6 @@
             </div>
         <% end %>
         <div class="more_details"><%= link_to 'Plus de détails', book %></div>
-        (
-            <%= link_to 'Edit', edit_book_path(book) %>
-            <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
-        )
       </div>
       <div class="state col-md-1">
         <%= book.state %>
