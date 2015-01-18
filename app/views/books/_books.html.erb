@@ -22,7 +22,7 @@
         <%= image_tag book.photo.url(:thumb) %>
       </div>
       <div class="info col-md-5">
-        <div class="title"><%= book.name %></div>
+        <div class="book-title"><%= book.name %></div>
         <% if book.author.to_s != '' %>
             <div class="author">
               <strong>Auteur:</strong>
