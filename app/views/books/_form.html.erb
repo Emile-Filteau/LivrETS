@@ -1,7 +1,7 @@
 <%= form_for(@book, :html => {class: 'form-horizontal'}) do |f| %>
   <% if @book.errors.any? %>
-    <div id="error_explanation alert alert-danger">
-      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+    <div class="alert alert-danger">
+      <h2>Il y a <%= pluralize(@book.errors.count, "érreur") %> dans le formulaire:</h2>
 
       <ul>
       <% @book.errors.full_messages.each do |message| %>
@@ -16,7 +16,7 @@
     <div class="book_form">
         <h2>Infos sur le livre</h2>
         <div class="form-group">
-            <%= f.label :name, 'Titre', html_options = {class: 'col-sm-1 control-label'} %>
+            <%= f.label :name, '* Titre', html_options = {class: 'col-sm-1 control-label'} %>
             <div class="col-sm-10">
                 <%= f.text_field :name, html_options = {class: 'form-control'} %>
             </div>
@@ -34,13 +34,13 @@
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :course, 'Cours', html_options = {class: 'col-sm-1 control-label'} %>
+            <%= f.label :course, '* Cours', html_options = {class: 'col-sm-1 control-label'} %>
             <div class="col-sm-10">
               <%= f.text_area :courses , html_options = {class: 'form-control course_selector'} %>
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :state, 'État', html_options = {class: 'col-sm-1 control-label'} %>
+            <%= f.label :state, '* État', html_options = {class: 'col-sm-1 control-label'} %>
             <div class="col-sm-10">
                 <%= f.radio_button(:state, 1, html_options = {class: 'col-sm-2'}) %>
                 <%= f.radio_button(:state, 2, html_options = {class: 'col-sm-2'}) %>
@@ -49,16 +49,16 @@
                 <%= f.radio_button(:state, 5, html_options = {class: 'col-sm-2'}) %>
             </div>
             <div class="col-sm-10 state_infos" style="text-align: center">
-                <%= label_tag(:book_state_1, "Poor", html_options = {class: 'col-sm-2'}) %>
-                <%= label_tag(:book_state_2, "Not bad", html_options = {class: 'col-sm-2'}) %>
-                <%= label_tag(:book_state_3, "Chipped", html_options = {class: 'col-sm-2'}) %>
-                <%= label_tag(:book_state_4, "Nice", html_options = {class: 'col-sm-2'}) %>
-                <%= label_tag(:book_state_5, "New", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_1, "Il manque des pages!", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_2, "Mauvais état.", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_3, "Usage normal, annoté", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_4, "Usage normal, les coins un peu pliés", html_options = {class: 'col-sm-2'}) %>
+                <%= label_tag(:book_state_5, "Comme neuf", html_options = {class: 'col-sm-2'}) %>
             </div>
         </div>
 
         <div class="form-group">
-            <%= f.label :price, 'Prix', html_options = {class: 'col-sm-1 control-label'} %>
+            <%= f.label :price, '* Prix', html_options = {class: 'col-sm-1 control-label'} %>
             <div class="col-sm-10">
               <%= f.number_field :price , html_options = {class: 'form-control'}%>
             </div>
@@ -75,28 +75,30 @@
     <div class="seller_form">
         <h2>Informations du vendeur</h2>
         <div class="form-group">
-            <%= f.label :contact_name, 'Nom', html_options = {class: 'col-sm-1 control-label'} %>
+            <%= f.label :contact_name, '* Nom', html_options = {class: 'col-sm-1 control-label'} %>
             <div class="col-sm-10">
                 <%= f.text_field :contact_name , html_options = {class: 'form-control'}%>
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :email, 'Courriel', html_options = {class: 'col-sm-1 control-label'} %>
+            <%= f.label :email, '* Courriel', html_options = {class: 'col-sm-1 control-label'} %>
             <div class="col-sm-10">
                 <%= f.email_field :email , html_options = {class: 'form-control'}%>
+                <i>Vous devez valider votre courriel, il ne sera pas affiché</i>
             </div>
         </div>
         <div class="form-group">
               <%= f.label :contact_phone, 'Téléphone', html_options = {class: 'col-sm-1 control-label'} %>
               <div class="col-sm-10">
                 <%= f.phone_field :contact_phone , html_options = {class: 'form-control'}%>
+                <i>Votre numéro de téléphone sera affiché</i>
               </div>
         </div>
     </div>
 
 
     <div class="actions">
-      <%= f.submit html_options = {class: 'btn btn-primary'} %>
+      <%= f.submit 'Ajouter le livre', html_options = {class: 'btn btn-primary'} %>
     </div>
   </div>
 
@@ -105,7 +107,10 @@
             $(".course_selector").tokenInput("<%= get_courses_json_courses_path %>", {
                 'theme': 'facebook',
                 tokenFormatter: function(item) {return "<li><p>" + item.name.split(' ')[0] + "</p></li>"},
-                preventDuplicates: true
+                preventDuplicates: true,
+                hintText: 'Chercher un cours',
+                noResultsText: 'Aucuns résultats',
+                searchingText: 'Recherche en cours...'
             });
 
             $('.token-input-list-facebook').addClass('custom_token_selector')
