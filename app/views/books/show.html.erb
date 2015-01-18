@@ -42,5 +42,10 @@
   <%= @book.contact_phone %>
 </p>
 
+<strong>Courses</strong>
+<% @book.courses.each do |course| %>
+    <p><%= course.acronym %></p>
+<% end %>
+
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

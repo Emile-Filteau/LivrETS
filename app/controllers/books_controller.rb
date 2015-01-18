@@ -49,9 +49,8 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
-    params.require(:book).permit(:courses)['courses'].split(',') do |course_id|
+    for course_id in params[:book][:courses].split(',')
       @book.courses << Course.find(course_id)
-      print(course_id)
     end
 
     # Validation code
@@ -78,6 +77,10 @@ class BooksController < ApplicationController
     if params[:code] != @book.validation_code
       redirect_to root_path
       return
+    end
+
+    for course_id in params[:book][:courses].split(',')
+      @book.courses << Course.find(course_id)
     end
 
     respond_to do |format|

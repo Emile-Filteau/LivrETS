@@ -1,4 +1,4 @@
-h1 {
+.title {
     float:left;
     margin-bottom: 40px;
 }
@@ -53,4 +53,15 @@ h1 {
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s !important;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s !important;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s !important;
+}
+
+.state_infos {
+    padding:20px;
+}
+
+.state_infos label {
+    border:1px solid black;
+    cursor: pointer;
+    height:100px;
+    padding-top:30px;
 }

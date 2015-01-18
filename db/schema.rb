@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117203521) do
+ActiveRecord::Schema.define(version: 20150117201530) do
 
   create_table "books", force: true do |t|
     t.string   "name"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20150117203521) do
     t.string   "contact_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "course_id"
     t.float    "price"
     t.boolean  "activated"
     t.string   "photo_file_name"
@@ -33,7 +32,12 @@ ActiveRecord::Schema.define(version: 20150117203521) do
     t.datetime "photo_updated_at"
   end
 
-  add_index "books", ["course_id"], name: "index_books_on_course_id"
+  create_table "books_courses", id: false, force: true do |t|
+    t.integer "book_id"
+    t.integer "course_id"
+  end
+
+  add_index "books_courses", ["book_id", "course_id"], name: "index_books_courses_on_book_id_and_course_id"
 
   create_table "courses", force: true do |t|
     t.string   "acronym"
@@ -44,13 +48,6 @@ ActiveRecord::Schema.define(version: 20150117203521) do
   end
 
   add_index "courses", ["program_id"], name: "index_courses_on_program_id"
-
-  create_table "create_join_table_book_courses", force: true do |t|
-    t.string   "book"
-    t.string   "course"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "programs", force: true do |t|
     t.string   "name"

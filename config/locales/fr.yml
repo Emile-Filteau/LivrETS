@@ -43,3 +43,30 @@ fr:
       hour:   "Heure"
       minute: "Minute"
       second: "Seconde"
+
+  activerecord:
+    attributes:
+      book:
+        email: "Le courriel"
+        name: "Le nom du livre"
+        state: "L'état du livre"
+        contact_name: "Le nom du vendeur"
+        price: "Le prix"
+    errors:
+      models:
+        book:
+          attributes:
+            email:
+              blank: "est requis"
+              invalid: "est invalide"
+            name:
+              blank: "est requis"
+              too_short: "est trop court"
+            state:
+              blank: "est requis"
+              not_a_number: "doit être un nombre entre 1 et 5"
+            contact_name:
+              blank: "est requis"
+            price:
+              blank: "est requis"
+              not_a_number: "doit être un nombre"
