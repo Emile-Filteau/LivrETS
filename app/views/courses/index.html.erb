@@ -17,7 +17,13 @@
       <tr>
         <td><%= course.acronym %></td>
         <td><%= course.name %></td>
-        <td><%= course.program.acronym %></td>
+        <td>
+          <% if course.program %>
+            <%= course.program.acronym %>
+          <% else %>
+            N/A
+          <% end %>
+        </td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>

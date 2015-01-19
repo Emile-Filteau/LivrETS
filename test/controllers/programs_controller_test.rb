@@ -18,7 +18,7 @@ class ProgramsControllerTest < ActionController::TestCase
 
   test "should create program" do
     assert_difference('Program.count') do
-      post :create, program: {  }
+      post :create, program: { name: @program.name, color:@program.color, acronym: @program.acronym  }
     end
 
     assert_redirected_to program_path(assigns(:program))
@@ -35,7 +35,7 @@ class ProgramsControllerTest < ActionController::TestCase
   end
 
   test "should update program" do
-    patch :update, id: @program, program: {  }
+    patch :update, id: @program, program: { name: 'TestUpdate', acronym: 'TST', color: '#000000'}
     assert_redirected_to program_path(assigns(:program))
   end
 

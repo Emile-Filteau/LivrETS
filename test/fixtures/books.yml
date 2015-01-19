@@ -4,18 +4,20 @@ one:
   name: MyString
   author: MyString
   edition: MyString
-  state: 
+  state: 1
   email: MyString
   contact_name: MyString
   validation_code: MyString
   contact_phone: MyString
+  price: 10
 
 two:
   name: MyString
   author: MyString
   edition: MyString
-  state: 
+  state: 2
   email: MyString
   contact_name: MyString
   validation_code: MyString
   contact_phone: MyString
+  price: 30

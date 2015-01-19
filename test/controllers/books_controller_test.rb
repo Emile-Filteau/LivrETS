@@ -17,10 +17,11 @@ class BooksControllerTest < ActionController::TestCase
   end
 
   test "should create book" do
-    assert_difference('Book.count') do
-      post :create, book: { author: @book.author, contact_name: @book.contact_name, contact_phone: @book.contact_phone, edition: @book.edition, email: @book.email, name: @book.name, state: @book.state, validation_code: @book.validation_code }
-    end
 
+    assert_difference('Book.count') do
+      course_string = courses(:one).id.to_s + ','+ courses(:two).id.to_s
+      post :create, book: {courses: course_string, name: @book.name, state: @book.state, price: @book.price, contact_name: @book.contact_name, email: 'etsbook111@gmail.com' }
+    end
     assert_redirected_to book_path(assigns(:book))
   end
 
@@ -30,18 +31,19 @@ class BooksControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit, id: @book
+    get :edit, id: @book, code: @book.validation_code
     assert_response :success
   end
 
   test "should update book" do
-    patch :update, id: @book, book: { author: @book.author, contact_name: @book.contact_name, contact_phone: @book.contact_phone, edition: @book.edition, email: @book.email, name: @book.name, state: @book.state, validation_code: @book.validation_code }
-    assert_redirected_to book_path(assigns(:book))
+    course_string = courses(:one).id.to_s + ','+ courses(:two).id.to_s
+    patch :update, id: @book, code: @book.validation_code, book: {courses: course_string, author: @book.author, contact_name: @book.contact_name, email: @book.email, name: @book.name, state: @book.state}
+        assert_redirected_to book_path(assigns(:book))
   end
 
   test "should destroy book" do
     assert_difference('Book.count', -1) do
-      delete :destroy, id: @book
+      delete :destroy, id: @book, code: @book.validation_code
     end
 
     assert_redirected_to books_path

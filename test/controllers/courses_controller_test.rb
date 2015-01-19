@@ -6,6 +6,8 @@ class CoursesControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
+    courses(:one).program = programs(:one)
+    courses(:two).program = programs(:one)
     get :index
     assert_response :success
     assert_not_nil assigns(:courses)
@@ -17,8 +19,9 @@ class CoursesControllerTest < ActionController::TestCase
   end
 
   test "should create course" do
+    @program = programs(:one)
     assert_difference('Course.count') do
-      post :create, course: {  }
+      post :create, course: { acronym: @course.acronym, name: @course.name, program_id: programs(:one).id }
     end
 
     assert_redirected_to course_path(assigns(:course))
@@ -35,7 +38,8 @@ class CoursesControllerTest < ActionController::TestCase
   end
 
   test "should update course" do
-    patch :update, id: @course, course: {  }
+    @new_program = programs(:two)
+    patch :update, id: @course, course: { name: 'TestCourse', acronym:'TST', program_id: @new_program.id }
     assert_redirected_to course_path(assigns(:course))
   end
 
