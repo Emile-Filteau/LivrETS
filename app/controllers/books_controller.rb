@@ -42,6 +42,10 @@ class BooksController < ApplicationController
       redirect_to root_path
       return
     end
+    respond_to do |format|
+      format.html { render :edit, location: @book}
+      format.json { render :show, location: @book}
+    end
   end
 
   # POST /books
@@ -120,7 +124,7 @@ class BooksController < ApplicationController
     @book.save
     respond_to do |format|
       format.html { redirect_to @book, notice: 'Book was successfully activated.' }
-      format.json { head :no_content }
+      format.json { render :show, status: :ok, location: @book }
     end
   end
 
