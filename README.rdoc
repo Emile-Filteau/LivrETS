@@ -1,27 +1,29 @@
 == README {<img src="https://magnum.travis-ci.com/Emile-Filteau/ETSBooks.svg?token=zCUA4tsbJSGJyL6iJmqr&branch=master" alt="Build Status" />}[https://magnum.travis-ci.com/Emile-Filteau/ETSBooks]
 
-Run server : +rails server+
+Run server : 
+  rails server
 
 === Ruby version
 1.9.3
 
 === System dependencies
 Ruby, Rails, Rake
-run +bundle install+ to install dependencies
+To install dependencies, run 
+  bundle install 
 
 === Configuration
 
 === Database creation
 Dev : To create the sqlite database run : 
-+rake db:migrate+
+  rake db:migrate
 
 === Database initialization
 Dev : To initialize databse or apply migrations run : 
-+rake db:migrate+
+  rake db:migrate
 
 === How to run the test suite
-run +rake test+
-
+run:
+  rake test
 
 === Deployment instructions
 Heroku app will be liked to github repo
