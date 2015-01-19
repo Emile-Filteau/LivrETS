@@ -7,4 +7,12 @@ class Book < ActiveRecord::Base
   validates :state, presence: true, numericality: { only_integer: true, greater_than:0, less_than_or_equal_to:5 }
   validates :contact_name, presence: true
   validates :price, presence: true, numericality: {greater_than: 0}
+
+  def photo_url
+    photo.url
+  end
+
+  def thumb_url
+    photo.url(:thumb)
+  end
 end
