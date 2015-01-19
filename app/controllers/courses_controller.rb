@@ -1,12 +1,13 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: Rails.application.config.admin_user, password: Rails.application.config.admin_password, except: [:index, :search, :show]
 
   # GET /courses
   def index
     @courses = Course.all
   end
 
-  def get_courses_json
+  def search
     if params[:q] == nil or params[:q].length == 0
       @courses = Course.all
       render json: @courses

@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     post 'search', on: :collection
   end
 
-  resources :programs, :constraints => {:format => /(html)/}
-  resources :courses, :constraints => {:format => /(html)/} do
-    get 'get_courses_json', on: :collection
+  resources :programs
+  resources :courses do
+    get 'search', on: :collection
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

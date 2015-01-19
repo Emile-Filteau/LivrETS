@@ -1,8 +1,13 @@
 require 'test_helper'
 
 class CoursesControllerTest < ActionController::TestCase
+
   setup do
     @course = courses(:one)
+
+    user = Rails.application.config.admin_user
+    pw = Rails.application.config.admin_password
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
   end
 
   test "should get index" do

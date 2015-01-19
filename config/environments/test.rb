@@ -47,4 +47,7 @@ Rails.application.configure do
       :password             => 'testy123uuu',
       :authentication       => "plain"
   }
+
+  config.admin_user = 'admin'
+  config.admin_password = '123'
 end

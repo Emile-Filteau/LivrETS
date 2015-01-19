@@ -105,7 +105,7 @@
 
     <script>
         $(document).ready(function () {
-            $(".course_selector").tokenInput("<%= get_courses_json_courses_path %>", {
+            $(".course_selector").tokenInput("<%= search_courses_path %>", {
                 'theme': 'facebook',
                 tokenFormatter: function(item) {return "<li><p>" + item.name.split(' ')[0] + "</p></li>"},
                 preventDuplicates: true,

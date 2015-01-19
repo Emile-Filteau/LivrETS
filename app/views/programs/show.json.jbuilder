@@ -1,0 +1,1 @@
+json.extract! @program, :id, :name, :acronym, :color

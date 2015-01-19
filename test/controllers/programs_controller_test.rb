@@ -3,6 +3,10 @@ require 'test_helper'
 class ProgramsControllerTest < ActionController::TestCase
   setup do
     @program = programs(:one)
+
+    user = Rails.application.config.admin_user
+    pw = Rails.application.config.admin_password
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
   end
 
   test "should get index" do

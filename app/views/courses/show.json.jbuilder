@@ -1,0 +1,1 @@
+json.extract! @course, :id, :name, :acronym, :program_id
