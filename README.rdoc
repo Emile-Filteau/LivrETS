@@ -1,4 +1,4 @@
-== README
+== README {<img src="https://magnum.travis-ci.com/Emile-Filteau/ETSBooks.svg?token=zCUA4tsbJSGJyL6iJmqr&branch=master" alt="Build Status" />}[https://magnum.travis-ci.com/Emile-Filteau/ETSBooks]
 
 Run server : ```rails server```
 
@@ -20,7 +20,7 @@ Dev : To initialize databse or apply migrations run :
 ```rake db:migrate```
 
 === How to run the test suite
-Don't know yet :confused:
+run ```rake test```
 
 
 === Deployment instructions
