@@ -136,7 +136,10 @@ class BooksController < ApplicationController
     def set_book
       @book = Book.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to :books, error: 'Cette annonce n\'existe pas !'
+      respond_to do |format|
+        format.html {redirect_to :books, error: 'Cette annonce n\'existe pas !'}
+        format.json {render json: {status: :error, text: 'Cette annonce n\'existe pas !'}}
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
