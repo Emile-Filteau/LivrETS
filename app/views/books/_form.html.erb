@@ -99,7 +99,11 @@
     <input type="hidden" name="code" value="<%= params['code'] %>" />
 
     <div class="actions">
-      <%= f.submit 'Ajouter le livre', html_options = {class: 'btn btn-primary'} %>
+      <% if @book.new_record? %>
+        <%= f.submit 'Ajouter le livre', html_options = {class: 'btn btn-primary'} %>
+      <% else %>
+        <%= f.submit 'Modifier le livre', html_options = {class: 'btn btn-primary'} %>
+      <% end %>
     </div>
   </div>
 

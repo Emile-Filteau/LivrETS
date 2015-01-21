@@ -1,3 +1,4 @@
+#encoding=utf-8
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :activate, :destroy]
 
@@ -29,6 +30,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+
   end
 
   # GET /books/new
@@ -66,7 +68,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.save
         UserMailer.information_email(@book).deliver!
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to @book, notice: 'Votre annonce a été crée, vérifier vos courriels.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -89,7 +91,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to @book, notice: 'Votre annonce a été modifiée' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -101,6 +103,7 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
+
     if params[:code] != @book.validation_code
       redirect_to root_path
       return
@@ -108,7 +111,7 @@ class BooksController < ApplicationController
 
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to books_url, notice: 'Votre annonce à été détruite !' }
       format.json { head :no_content }
     end
   end
@@ -123,7 +126,7 @@ class BooksController < ApplicationController
     @book.activated = true
     @book.save
     respond_to do |format|
-      format.html { redirect_to @book, notice: 'Book was successfully activated.' }
+      format.html { redirect_to @book, notice: 'Votre annonce a été activée !' }
       format.json { render :show, status: :ok, location: @book }
     end
   end
@@ -132,6 +135,8 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to :books, error: 'Cette annonce n\'existe pas !'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
