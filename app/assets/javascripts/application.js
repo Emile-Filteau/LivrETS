@@ -1,3 +1,5 @@
+//= require jquery
+//= require jquery_ujs
 
 /* Code for the search autocomplete */
 $(document).ready(function () {

@@ -1,4 +1,5 @@
-<div class="alert" id="notice"><%= notice %></div>
+<%= render 'notice'%>
+<%= render 'error' %>
 
 <div class="book_infos">
     <%= image_tag @book.photo.url(:medium) %>
