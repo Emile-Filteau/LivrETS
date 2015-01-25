@@ -8,9 +8,11 @@ class CoursesController < ApplicationController
   end
 
   def search
-    return redirect_to :index if params[:q].nil? or params[:q].empty?
-
-    @courses = Course.where('acronym like ? OR name like ?', "%#{params[:q]}%", "%#{params[:q]}%").map { |course| {id: course.id, name: course.acronym + ' - ' + course.name} }
+    if not params[:q].nil? and  not params[:q].empty?
+      @courses = Course.where('acronym like ? OR name like ?', "%#{params[:q]}%", "%#{params[:q]}%").map { |course| {id: course.id, name: course.acronym + ' - ' + course.name} }
+    else
+      @course = []
+    end
     render json: @courses
   end
 
