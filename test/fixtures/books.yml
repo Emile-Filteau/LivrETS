@@ -5,7 +5,7 @@ one:
   author: MyString
   edition: MyString
   state: 1
-  email: MyString
+  email: MyString@test.com
   contact_name: MyString
   validation_code: MyString
   contact_phone: MyString
@@ -16,7 +16,7 @@ two:
   author: MyString
   edition: MyString
   state: 2
-  email: MyString
+  email: MyString@test.com
   contact_name: MyString
   validation_code: MyString
   contact_phone: MyString

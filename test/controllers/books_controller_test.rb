@@ -38,7 +38,7 @@ class BooksControllerTest < ActionController::TestCase
   test "should update book" do
     course_string = courses(:one).id.to_s + ','+ courses(:two).id.to_s
     patch :update, id: @book, code: @book.validation_code, book: {courses: course_string, author: @book.author, contact_name: @book.contact_name, email: @book.email, name: @book.name, state: @book.state}
-        assert_redirected_to book_path(assigns(:book))
+    assert_redirected_to book_path(assigns(:book))
   end
 
   test "should destroy book" do
