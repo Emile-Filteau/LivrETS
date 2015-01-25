@@ -41,3 +41,5 @@ gem "paperclip", "~> 4.2"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'thin'
+gem 'valid_email'

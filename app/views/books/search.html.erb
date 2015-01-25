@@ -1,3 +1,7 @@
 <h1>Résultats</h1>
 
-<%= render 'books', books: @books %>
+<% if @books %>
+    <%= render 'books', books: @books %>
+<% else %>
+    <i>Aucuns résultats trouvés, essayez autre chose</i>
+<% end %>

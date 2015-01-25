@@ -10,20 +10,13 @@ class BooksController < ApplicationController
 
   # GET /books/search
   def search
-    if params[:search].to_s != ''
-      course = Course.where("acronym = ?", params[:search][0..5].upcase).first()
-      if course
-        # If it is a search by course (1 course only), and that course is found, return its books.
-        @books = course.books.order(created_at: :desc)
-      else
-        # Else, check for book names OR author names
-        if params[:search].length >= 3
-          query = '%' + params[:search] + '%'
-          @books = Book.where('name like ? OR author like ?', query, query).where(activated: true).order(created_at: :desc)
-        end
-      end
+    return if params[:search].nil? or params[:search].empty?
+
+    course = Course.find_by_acronym params[:search]
+    if course
+      @books = course.books.order(created_at: :desc)
     else
-      redirect_to root_path
+      @books = Book.where('name like ? OR author like ?', "%#{params[:search]}%", "%#{params[:search]}%").where(activated: true).order(created_at: :desc)
     end
   end
 
@@ -41,9 +34,9 @@ class BooksController < ApplicationController
   # GET /books/1/edit
   def edit
     if params[:code] != @book.validation_code
-      redirect_to root_path
-      return
+      redirect_to root_path and return
     end
+
     respond_to do |format|
       format.html { render :edit, location: @book}
       format.json { render :show, location: @book}
@@ -55,7 +48,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
-    for course_id in params[:book][:courses].split(',')
+    params[:book][:courses].split(',').each do |course_id|
       @book.courses << Course.find(course_id)
     end
 
@@ -80,12 +73,9 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    if params[:code] != @book.validation_code
-      redirect_to root_path
-      return
-    end
+    return redirect_to root_path if params[:code] != @book.validation_code
 
-    for course_id in params[:book][:courses].split(',')
+    params[:book][:courses].split(',').each do |course_id|
       @book.courses << Course.find(course_id)
     end
 
@@ -103,11 +93,7 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-
-    if params[:code] != @book.validation_code
-      redirect_to root_path
-      return
-    end
+    return redirect_to root_path if params[:code] != @book.validation_code
 
     @book.destroy
     respond_to do |format|
@@ -118,10 +104,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/activate
   def activate
-    if params[:code] != @book.validation_code
-      redirect_to root_path
-      return
-    end
+    return redirect_to root_path if params[:code] != @book.validation_code
 
     @book.activated = true
     @book.save
