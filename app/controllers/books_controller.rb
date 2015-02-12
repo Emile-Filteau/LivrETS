@@ -33,9 +33,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
-    if params[:code] != @book.validation_code
-      redirect_to root_path and return
-    end
+    return redirect_to root_path if params[:code] != @book.validation_code
 
     respond_to do |format|
       format.html { render :edit, location: @book}

@@ -21,6 +21,9 @@ Dev : To create the sqlite database run :
 Dev : To initialize databse or apply migrations run : 
   rake db:migrate
 
+If you need to seed the database with ETS courses and programs :
+  rake db:seed
+
 === How to run the test suite
 run:
   rake test
