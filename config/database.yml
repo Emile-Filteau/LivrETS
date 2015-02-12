@@ -23,3 +23,9 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
+
+ production:
+   adapter: postgresql
+     encoding: utf-8
+     url: <%= ENV['HEROKU_POSTGRESQL_CRIMSON_URL'] %>
+     pool: 5
