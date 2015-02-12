@@ -43,3 +43,5 @@ gem "paperclip", "~> 4.2"
 
 gem 'thin'
 gem 'valid_email'
+
+gem 'puma'
