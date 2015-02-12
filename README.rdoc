@@ -1,4 +1,4 @@
-== README [![Build Status](https://magnum.travis-ci.com/Emile-Filteau/LivrETS.svg?token=zCUA4tsbJSGJyL6iJmqr&branch=master)](https://magnum.travis-ci.com/Emile-Filteau/LivrETS)
+== README {<img src="https://magnum.travis-ci.com/Emile-Filteau/LivrETS.svg?token=zCUA4tsbJSGJyL6iJmqr&branch=master" alt="Build Status" />}[https://magnum.travis-ci.com/Emile-Filteau/LivrETS]
 
 Run server : 
   rails server
