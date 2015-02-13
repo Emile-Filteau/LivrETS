@@ -30,9 +30,11 @@ run:
 
 === Deployment instructions
 To deploy on Heroku, you need the Heroku toolbelt installed
-1. Make sure every environnement variables are set in heroku +heroku config+
+1. Make sure every environnement variables are set in heroku 
+  heroku config
+
 If not, add them this command
-  +heroku config:add KEY=VALUE+
+  heroku config:add KEY=VALUE
 
 2. Collect all assets locally before deployement :
   RAILS_ENV=production bundle exec rake assets:precompile
