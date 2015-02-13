@@ -29,5 +29,13 @@ run:
   rake test
 
 === Deployment instructions
-Heroku app will be liked to github repo
-Instructions will be added soon
+To deploy on Heroku, you need the Heroku toolbelt installed
+1. Make sure every environnement variables are set in heroku +heroku config+
+If not, add them this command
+  +heroku config:add KEY=VALUE+
+
+2. Collect all assets locally before deployement :
+  RAILS_ENV=production bundle exec rake assets:precompile
+
+3. Deploy it
+  git push heroku master
