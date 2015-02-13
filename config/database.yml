@@ -23,6 +23,6 @@ test:
 
 production:
   adapter: postgresql
-  encoding: utf-8
+  encoding: utf8
   url: <%= ENV["HEROKU_POSTGRESQL_CRIMSON_URL"] %>
   pool: 5
