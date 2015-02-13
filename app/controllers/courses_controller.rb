@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
 
   def search
     if not params[:q].nil? and  not params[:q].empty?
-      @courses = Course.where('acronym like ? OR name like ?', "%#{params[:q]}%", "%#{params[:q]}%").map { |course| {id: course.id, name: course.acronym + ' - ' + course.name} }
+      @courses = Course.where('lower(acronym) like lower(?) OR lower(name) like lower(?)', "%#{params[:q]}%", "%#{params[:q]}%").map { |course| {id: course.id, name: course.acronym + ' - ' + course.name} }
     else
       @course = []
     end
