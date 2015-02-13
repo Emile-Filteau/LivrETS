@@ -75,4 +75,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.smtp_from = "books@etsbooks.com"
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :user_name            => 'etsbook111@gmail.com',
+      :password             => 'testy123uuu',
+      :authentication       => "plain"
+  }
+
+  config.admin_user = ENV['ADMIN_USERNAME']
+  config.admin_password = ENV['ADMIN_PASSWORD']
 end
