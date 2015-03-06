@@ -6,6 +6,6 @@ Paperclip::Attachment.default_options[:path]            = ':class/:attachment/:i
 Paperclip::Attachment.default_options[:processors]      = [:thumbnail]
 Paperclip::Attachment.default_options[:styles]          = {}
 Paperclip::Attachment.default_options[:convert_options] = {}
-Paperclip::Attachment.default_options[:default_url]     = "/images/:class/:attachment/default_:style.png"
+Paperclip::Attachment.default_options[:default_url]     = '/images/:class/:attachment/default_:style.png'
 Paperclip::Attachment.default_options[:default_style]   = :original
 Paperclip::Attachment.default_options[:escape_url]      = false
