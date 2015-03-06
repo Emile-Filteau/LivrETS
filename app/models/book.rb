@@ -5,7 +5,7 @@ class Book < ActiveRecord::Base
                     :styles => { :medium => "300x300>", :thumb => "250x250>" },
                     :default_url => "/images/:style/missing_book.png",
                     :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                     :path => '/:style/:id/:filename'
 
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
