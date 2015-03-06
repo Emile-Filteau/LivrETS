@@ -1,0 +1,12 @@
+development:
+  bucket:            planter-1c6291668daa4b14ae630d5067c4f118-dev
+  access_key_id:     <%= ENV['PLANTER_S3_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['PLANTER_S3_SECRET_ACCESS_KEY'] %>
+test:
+  bucket:            planter-1c6291668daa4b14ae630d5067c4f118-dev
+  access_key_id:     <%= ENV['PLANTER_S3_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['PLANTER_S3_SECRET_ACCESS_KEY'] %>
+production:
+  bucket:            <%= ENV['PLANTER_BUCKET_NAME'] %>
+  access_key_id:     <%= ENV['PLANTER_S3_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['PLANTER_S3_SECRET_ACCESS_KEY'] %>

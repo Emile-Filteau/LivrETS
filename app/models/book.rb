@@ -1,7 +1,13 @@
 require 'valid_email'
 class Book < ActiveRecord::Base
   has_and_belongs_to_many :courses
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "250x250>" }, :default_url => "/images/:style/missing_book.png"
+  has_attached_file :photo,
+                    :styles => { :medium => "300x300>", :thumb => "250x250>" },
+                    :default_url => "/images/:style/missing_book.png",
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :path => '/:style/:id/:filename'
+
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
   validates :email, presence: true, :email => true
   validates :name, presence: true, length: {minimum: 5}
