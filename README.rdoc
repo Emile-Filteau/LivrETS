@@ -4,7 +4,7 @@ Run server :
   rails server
 
 === Ruby version
-1.9.3
+2.2.0
 
 === System dependencies
 Ruby, Rails, Rake
