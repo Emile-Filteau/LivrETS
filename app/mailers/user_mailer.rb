@@ -3,6 +3,6 @@ class UserMailer < ActionMailer::Base
 
   def information_email(book)
     @book = book
-    mail(to: @book.email, subject: 'ETSBook: '+@book.name)
+    mail(to: @book.email, subject: 'LivrETS: '+@book.name)
   end
 end

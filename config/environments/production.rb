@@ -39,7 +39,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
@@ -76,13 +76,13 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.smtp_from = "books@etsbooks.com"
+  config.smtp_from = "info@livrets.org"
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :user_name            => 'etsbook111@gmail.com',
-      :password             => 'testy123uuu',
+      :user_name            => 'infolivrets@gmail.com',
+      :password             => ENV['EMAIL_PASSWORD'],
       :authentication       => "plain"
   }
 
