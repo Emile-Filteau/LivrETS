@@ -1,13 +1,14 @@
 #encoding: utf-8
 # Script to get the list of courses from etsmtl.ca
 # Ugly, but it works... for now.
+# Change curl to mechanize !
 
 source = `curl http://www.etsmtl.ca/Programmes-Etudes/Cours-horaires/Cours-horaires-1er-cycle/Cours-par-sigle?sigle=*`
 
-listCoursesSource = source.split('<table class="ListeCoursGrille" cellspacing="0" cellpadding="0" border="0" id="plc_lt_zoneMain_pageplaceholder_pageplaceholder_lt_zoneContent_pageplaceholder_pageplaceholder_lt_zoneCenter_pageplaceholder_pageplaceholder_lt_zoneCenter_ListeCoursParSigle_GridViewResultats" style="border-collapse:collapse;">')[1].split('</table>')[0];
+list_courses_source = source.split('<table class="ListeCoursGrille" cellspacing="0" cellpadding="0" border="0" id="plc_lt_zoneMain_pageplaceholder_pageplaceholder_lt_zoneContent_pageplaceholder_pageplaceholder_lt_zoneCenter_pageplaceholder_pageplaceholder_lt_zoneCenter_ListeCoursParSigle_GridViewResultats" style="border-collapse:collapse;">')[1].split('</table>')[0];
 
-listCoursesAcronyms = listCoursesSource.scan(/Fiche-de-cours\?Sigle=(.*)"/)
-listCoursesNames = listCoursesSource.scan(/ListeCoursGrilleCol2">\s*(.*)\s*<\/td>/)
+list_courses_acronyms = list_courses_source.scan(/Fiche-de-cours\?Sigle=(.*)"/)
+list_courses_names = list_courses_source.scan(/ListeCoursGrilleCol2">\s*(.*)\s*<\/td>/)
 
 Program.delete_all
 programs = Hash[]
@@ -21,7 +22,7 @@ programs["GOL"] = Program.create!(:acronym => 'GOL', :name => 'Génie des opéra
 programs["GTI"] = Program.create!(:acronym => 'GTI', :name => 'Génie des technologies de l\'information', :color => '#000000')
 
 Course.delete_all
-listCoursesAcronyms.zip( listCoursesNames ).each do |acronym,name|
+list_courses_acronyms.zip( list_courses_names ).each do |acronym,name|
   acronym = acronym[0].strip
   name = name[0].strip
   program_acronym = acronym[0..2]

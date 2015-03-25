@@ -1,6 +1,7 @@
 #encoding=utf-8
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :activate, :destroy]
+  before_action :check_validation_code, only: [:edit, :update, :destroy, :activate]
 
   # GET /books
   # GET /books.json
@@ -33,8 +34,6 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
-    return redirect_to root_path if params[:code] != @book.validation_code
-
     respond_to do |format|
       format.html { render :edit, location: @book}
       format.json { render :show, location: @book}
@@ -71,8 +70,6 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    return redirect_to root_path if params[:code] != @book.validation_code
-
     params[:book][:courses].split(',').each do |course_id|
       @book.courses << Course.find(course_id)
     end
@@ -91,8 +88,6 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    return redirect_to root_path if params[:code] != @book.validation_code
-
     @book.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Votre annonce à été détruite !' }
@@ -102,8 +97,6 @@ class BooksController < ApplicationController
 
   # GET /books/1/activate
   def activate
-    return redirect_to root_path if params[:code] != @book.validation_code
-
     @book.activated = true
     @book.save
     respond_to do |format|
@@ -113,6 +106,10 @@ class BooksController < ApplicationController
   end
 
   private
+    def check_validation_code
+      redirect_to root_path if params[:code] != @book.validation_code
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])

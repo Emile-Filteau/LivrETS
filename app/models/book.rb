@@ -19,8 +19,4 @@ class Book < ActiveRecord::Base
   def thumb_url
     photo.url(:thumb)
   end
-
-  def find_by_acronym
-    Course.where('acronym = ?', acronym[0..5].upcase).first
-  end
 end
