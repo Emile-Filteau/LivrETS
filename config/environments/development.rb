@@ -40,10 +40,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
-      :port                 => 587,
+      :port                 => 465,
       :user_name            => 'infolivrets@gmail.com',
       :password             => ENV['LIVRETS_PASSWORD'],
-      :authentication       => "plain"
+      :authentication       => "plain",
+      :tls => true
   }
 
   config.admin_user = 'admin'
