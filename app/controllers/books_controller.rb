@@ -106,22 +106,23 @@ class BooksController < ApplicationController
   end
 
   private
-    def check_validation_code
-      redirect_to root_path if params[:code] != @book.validation_code
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      respond_to do |format|
-        format.html {redirect_to :books, error: 'Cette annonce n\'existe pas !'}
-        format.json {render json: {status: :error, text: 'Cette annonce n\'existe pas !'}}
-      end
-    end
+  def check_validation_code
+    redirect_to root_path if params[:code] != @book.validation_code
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def book_params
-      params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :contact_phone, :photo, :price)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.html {redirect_to :books, error: 'Cette annonce n\'existe pas !'}
+      format.json {render json: {status: :error, text: 'Cette annonce n\'existe pas !'}}
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def book_params
+    params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :contact_phone, :photo, :price)
+  end
 end
