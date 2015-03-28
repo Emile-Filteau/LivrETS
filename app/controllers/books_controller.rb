@@ -1,6 +1,6 @@
 #encoding=utf-8
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :activate, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :activate, :destroy, :contact]
   before_action :check_validation_code, only: [:edit, :update, :destroy, :activate]
 
   # GET /books
@@ -105,6 +105,16 @@ class BooksController < ApplicationController
     end
   end
 
+  def contact
+    infos = contact_params
+    UserMailer.contact_email(@book, infos['name'], infos['email'], infos['message']).deliver!
+
+    respond_to do |format|
+      format.html { redirect_to @book, notice: 'Votre message a été envoyé' }
+      format.json { render :show, status: :ok, location: @book }
+    end
+  end
+
   private
 
   def check_validation_code
@@ -124,5 +134,9 @@ class BooksController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def book_params
     params.require(:book).permit(:name, :author, :edition, :state, :email, :contact_name, :contact_phone, :photo, :price)
+  end
+
+  def contact_params
+    params.permit(:name, :email, :message)
   end
 end

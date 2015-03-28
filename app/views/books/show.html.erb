@@ -1,43 +1,8 @@
 <%= render 'notice'%>
 <%= render 'error' %>
 
-<div class="book_infos">
-    <%= image_tag @book.photo.url(:medium) %>
-    <h3><%= @book.name %></h3>
-    <% @book.courses.each do |course| %>
-      <span class="label label-primary"><%= course.acronym %></span>
-    <% end %>
+<h2 class="col-lg-12 col-xs-12">Informations sur le livre</h2>
+<%= render 'book', book: @book %>
 
-
-    <% if @book.author != "" %>
-      <h4><strong>Auteur : </strong><%= @book.author %></h4>
-    <% end %>
-
-    <% if @book.edition != "" %>
-      <h4><strong>Édition : </strong><%= @book.edition %></h4>
-    <% end %>
-
-    <div class="contact_infos">
-        <p>
-            <strong>Vendeur :</strong>
-            <%= @book.contact_name %>
-        </p>
-
-        <% if @book.contact_phone != ''%>
-            <p>
-            <strong>Numéro de téléphone :</strong>
-            <%= @book.contact_phone %>
-            </p>
-        <% end %>
-    </div>
-
-  <div class="clear"></div>
-</div>
-
-<div class="col-sm-10 state_infos" style="text-align: center">
-  <label class="col-sm-2">Il manque des pages!</label>
-  <label class="col-sm-2">Mauvais état.</label>
-  <label class="col-sm-2">Usage normal, annoté</label>
-  <label class="col-sm-2">Usage normal, les coins un peu pliés</label>
-  <label class="col-sm-2">Comme neuf</label>
-</div>
+<h2 class="col-lg-12 col-xs-12">Contactez le vendeur</h2>
+<%= render 'contact_form', book: @book %>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1><%= @name %> vous a contacté pour votre annonce : <%= @book.name %></h1>
+<%= @message.html_safe %>
+<p>
+  <strong>Vous pouvez contacter <%= @name %> a partir de cette addresse : <%= @email %></strong>
+</p>
+</body>
+</html>
