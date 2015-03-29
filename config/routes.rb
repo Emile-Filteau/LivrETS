@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'books#index'
   resources :books do
     get 'activate', on: :member
+    post 'contact', on: :member
     get 'search', on: :collection
     post 'search', on: :collection
   end
