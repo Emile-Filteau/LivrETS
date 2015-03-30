@@ -11,14 +11,24 @@ class BooksController < ApplicationController
 
   # GET /books/search
   def search
-    return if params[:search].nil? or params[:search].empty?
+    return if params[:q].nil? or params[:q].empty?
+    @search_term = params[:q]
+    books = Array.new
 
-    course = Course.find_by_acronym params[:search]
-    if course
-      @books = course.books.order(created_at: :desc)
-    else
-      @books = Book.where('name like ? OR author like ?', "%#{params[:search]}%", "%#{params[:search]}%").where(activated: true).order(created_at: :desc)
+    program = Program.find_by_acronym params[:q].upcase
+    if program
+      program.courses.each do |course|
+        (books << course.books.order(created_at: :desc)).flatten!
+      end
     end
+
+    course = Course.find_by_acronym params[:q].upcase
+    if course
+      (books << course.books.order(created_at: :desc)).flatten!
+    else
+      (books << Book.where('lower(name) like ? OR lower(author) like ?', "%#{params[:q].downcase}%", "%#{params[:q].downcase}%").where(activated: true).order(created_at: :desc)).flatten!
+    end
+    @books = books
   end
 
   # GET /books/1

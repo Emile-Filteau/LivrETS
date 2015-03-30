@@ -6,6 +6,10 @@
     margin-bottom: 40px;
 }
 
+.book_link {
+    color:black;
+}
+
 .add_button {
     float:right;
     margin-top:30px;
@@ -116,4 +120,14 @@
 
 .contact_form {
     margin-bottom:10px;
+}
+
+.categories {
+    list-style-type: none;
+    padding-left:0;
+}
+.categories li {
+    border-bottom:1px solid #777;
+    margin-bottom:10px;
+    font-size:18px;
 }

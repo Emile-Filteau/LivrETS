@@ -1,33 +1,33 @@
-<div class="book_infos col-lg-12 col-sm12">
+<div class="book_infos col-lg-12 col-xs-12">
   <div class="image_container col-lg-2 col-xs-12">
-    <%= image_tag @book.photo.url(:medium) %>
+    <%= image_tag book.photo.url(:medium) %>
   </div>
 
   <div class="informations col-lg-6 col-xs-12">
-    <h3><%= @book.name %></h3>
-    <% if @book.author != "" %>
-        <h4><strong>Auteur : </strong><%= @book.author %></h4>
+    <h3><%= book.name %></h3>
+    <% if book.author != "" %>
+        <h4><strong>Auteur : </strong><%= book.author %></h4>
     <% end %>
 
-    <% if @book.edition != "" %>
-        <h4><strong>Édition : </strong><%= @book.edition %></h4>
+    <% if book.edition != "" %>
+        <h4><strong>Édition : </strong><%= book.edition %></h4>
     <% end %>
 
     <div class="stars col-lg-12 col-xs-12">
-      <span class="fa fa-lg col-lg-1 col-xs-2 col-xs-offset-1 col-lg-offset-0 <% if @book.state >= 1 %>fa-star<% else %>fa-star-o<% end %>"></span>
-      <span class="fa fa-lg col-lg-1 col-xs-2 <% if @book.state >= 2 %>fa-star<% else %>fa-star-o<% end %>"></span>
-      <span class="fa fa-lg col-lg-1 col-xs-2 <% if @book.state >= 3 %>fa-star<% else %>fa-star-o<% end %>"></span>
-      <span class="fa fa-lg col-lg-1 col-xs-2 <% if @book.state >= 4 %>fa-star<% else %>fa-star-o<% end %>"></span>
-      <span class="fa fa-lg col-lg-1 col-xs-2 <% if @book.state >= 5 %>fa-star<% else %>fa-star-o<% end %>"></span>
+      <span class="fa fa-lg col-lg-1 col-xs-2 col-xs-offset-1 col-lg-offset-0 <% if book.state >= 1 %>fa-star<% else %>fa-star-o<% end %>"></span>
+      <span class="fa fa-lg col-lg-1 col-xs-2 <% if book.state >= 2 %>fa-star<% else %>fa-star-o<% end %>"></span>
+      <span class="fa fa-lg col-lg-1 col-xs-2 <% if book.state >= 3 %>fa-star<% else %>fa-star-o<% end %>"></span>
+      <span class="fa fa-lg col-lg-1 col-xs-2 <% if book.state >= 4 %>fa-star<% else %>fa-star-o<% end %>"></span>
+      <span class="fa fa-lg col-lg-1 col-xs-2 <% if book.state >= 5 %>fa-star<% else %>fa-star-o<% end %>"></span>
     </div>
   </div>
 
-  <% @book.courses.each do |course| %>
+  <% book.courses.each do |course| %>
       <span class="course col-md-1 col-xs-12 label label-primary"><%= course.acronym %></span>
   <% end %>
 
   <div class="price col-lg-3 col-lg-push-2 col-xs-12">
-    <span><%= number_to_currency(@book.price) %></span>
+    <span><%= number_to_currency(book.price) %></span>
   </div>
 
   <div class="clear"></div>
