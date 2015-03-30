@@ -1,6 +1,6 @@
-<h1>Résultats</h1>
+<h1>Résultats pour "<%= @search_term %>"</h1>
 
-<% if @books %>
+<% if @books && !@books.empty? %>
     <%= render 'books', books: @books %>
 <% else %>
     <i>Aucuns résultats trouvés, essayez autre chose</i>
