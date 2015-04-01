@@ -1,14 +1,14 @@
 <h1>Liste des cours</h1>
 
-<%= link_to 'Nouveau cours', new_course_path %>
+<%= link_to 'Nouveau cours', new_course_path, class: 'btn btn-primary' %>
 
-<table class="table table-striped">
+<table class="table table-striped col-xs-12">
   <thead>
     <tr>
-      <th>Sigle</th>
-      <th>Nom du cours</th>
-      <th>Programme</th>
-      <th colspan="3"></th>
+      <th class="col-lg-1 col-xs-1">Sigle</th>
+      <th class="col-lg-7 col-xs-7">Nom du cours</th>
+      <th class="col-lg-3 col-xs-3">Programme</th>
+      <th class="col-lg-1 col-xs-1"></th>
     </tr>
   </thead>
 
@@ -24,9 +24,7 @@
             N/A
           <% end %>
         </td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Voir', course, class: 'btn btn-sm btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>

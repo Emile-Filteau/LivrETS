@@ -1,5 +1,5 @@
 <%= form_for(@course) do |f| %>
-  <% if @course.errors.any? %>
+    <% if @course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
@@ -9,9 +9,28 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group col-lg-2 col-xs-4">
+      <%= f.label :acronym, 'Sigle du cours', class: 'control-label' %>
+      <%= f.text_field :acronym, {:class => 'form-control', :placeholder => 'Ex : MAT145'} %>
+    </div>
+
+    <div class="form-group col-lg-12 col-xs-12">
+        <%= f.label :name, 'Nom du cours', class: 'control-label' %>
+        <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-lg-12 col-xs-12">
+        <%= f.label :program, 'Programme', class: 'control-label' %>
+        <%= f.select :program, options_from_collection_for_select(Program.all, :id, :name), {}, {:class => 'form-control'} %>
+    </div>
+
+    <div class="actions col-lg-12 col-xs-12">
+      <% if @course.new_record? %>
+          <%= f.submit 'Ajouter le cours', class: 'btn btn-primary' %>
+      <% else %>
+          <%= f.submit 'Modifier le cours', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
 <% end %>

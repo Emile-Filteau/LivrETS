@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<h2><%= "#{@course.acronym} #{@course.name}" %></h2>
+<h3><%= @course.program.name %></h3>
+
+<%= link_to 'Modifier', edit_course_path(@course), class: 'btn btn-primary' %>
+<%= link_to 'Supprimer', @course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
