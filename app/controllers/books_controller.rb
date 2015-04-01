@@ -80,6 +80,8 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+
+    @book.courses = Array.new
     params[:book][:courses].split(',').each do |course_id|
       @book.courses << Course.find(course_id)
     end

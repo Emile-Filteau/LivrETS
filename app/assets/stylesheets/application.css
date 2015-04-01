@@ -131,3 +131,8 @@
     margin-bottom:10px;
     font-size:18px;
 }
+
+.state_star {
+    cursor: pointer;
+    font-size:26px;
+}
