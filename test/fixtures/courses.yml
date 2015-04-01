@@ -3,9 +3,9 @@
 one:
   acronym: MyString
   name: MyString
-  program_id:
+  program_id: 1
 
 two:
   acronym: MyString
   name: MyString
-  program_id:
+  program_id: 1
