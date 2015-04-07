@@ -1,3 +1,5 @@
 <% @books.each do |book| %>
+    <div class="card-panel">
     <%= link_to render('book', book: book), book, class: 'book_link' %>
+    </div>
 <% end %>

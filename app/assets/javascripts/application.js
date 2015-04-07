@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require materialize.min
 
 /* Code for the search autocomplete */
 $(document).ready(function () {
@@ -12,4 +13,6 @@ $(document).ready(function () {
             source:data
         })
     })
+
+    $(".button-collapse").sideNav();
 });

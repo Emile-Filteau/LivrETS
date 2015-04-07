@@ -1,9 +1,13 @@
 .clear {
     clear: both;
 }
+
 .title {
-    float:left;
-    margin-bottom: 40px;
+    margin-top:0;
+}
+
+nav #search {
+    margin-bottom:0;
 }
 
 .book_link {
@@ -79,7 +83,6 @@
 .book_infos {
     margin:10px 0;
     padding-bottom:10px;
-    border-bottom:1px solid #777;
 }
 
 .book_infos .image_container {
@@ -100,7 +103,7 @@
 .book_infos .price {
     font-size: 20px;
     margin-top: 20px;
-    text-align: center;
+    text-align: right;
 }
 
 .book_infos .informations .stars {
