@@ -1,22 +1,22 @@
-<h4 class="col-lg-12 col-xs-12">Nom du vendeur : <%= @book.contact_name %></h4>
+<h4>Nom du vendeur : <%= @book.contact_name %></h4>
 <% if @book.contact_phone %>
-    <p class="col-lg-12 col-xs-12"><%= @book.contact_phone %></p>
+    <p><%= @book.contact_phone %></p>
 <% end %>
 <%= form_for @book, url: {action: 'contact'}, method: 'post', html: {class: 'contact_form col-lg-12'} do |f| %>
-    <div class="input-group col-lg-4 col-xs-12">
+    <div class="input-field">
       <label for="name_input">Nom</label>
       <input type="text" id="name_input" class="form-control" name="name" />
     </div>
 
-    <div class="input-group col-lg-4 col-xs-12">
+    <div class="input-field">
       <label for="email_input">Votre courriel</label>
       <input type="text" id="email_input" class="form-control" name="email" />
     </div>
 
-    <div class="input-group col-lg-12 col-xs-12">
+    <div class="input-field">
+      <textarea class="materialize-textarea" rows="5" id="message_input" name="message"></textarea>
       <label for="message_input">Message</label>
-      <textarea class="form-control" rows="5" id="message_input" name="message"></textarea>
     </div>
 
-    <input type="submit" class="btn btn-primary col-lg-1 col-xs-12" />
+    <button class="btn red darken-1">Envoyer<i class='mdi-content-send right'></i></button>
 <% end %>

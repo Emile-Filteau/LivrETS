@@ -14,9 +14,8 @@ nav #search {
     color:black;
 }
 
-.add_button {
-    float:right;
-    margin-top:30px;
+.add_book_link {
+    font-size:1.5rem;
 }
 
 /* For the books/_books.html.erb partial. */
@@ -96,7 +95,7 @@ nav #search {
     display:inline-block;
     float:right;
     text-align: center;
-    font-size:16px;
+    font-size:14px;
     margin:1px;
 }
 
@@ -125,17 +124,20 @@ nav #search {
     margin-bottom:10px;
 }
 
-.categories {
-    list-style-type: none;
-    padding-left:0;
-}
 .categories li {
-    border-bottom:1px solid #777;
+    margin-right:10px;
     margin-bottom:10px;
-    font-size:18px;
+}
+
+.categories a {
+    color:white;
 }
 
 .state_star {
     cursor: pointer;
     font-size:26px;
+}
+
+.category-title {
+    margin-left:-9px;
 }

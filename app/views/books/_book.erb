@@ -13,7 +13,7 @@
         <h5><strong>Édition : </strong><%= book.edition %></h5>
     <% end %>
 
-    <div class="stars col l12 s12">
+    <div class="stars col l12 s12 grey-text text-darken-3">
       <span class="fa fa-lg col l1 s2 offset-s1 offset-l0 <% if book.state >= 1 %>fa-star<% else %>fa-star-o<% end %>"></span>
       <span class="fa fa-lg col l1 s2 <% if book.state >= 2 %>fa-star<% else %>fa-star-o<% end %>"></span>
       <span class="fa fa-lg col l1 s2 <% if book.state >= 3 %>fa-star<% else %>fa-star-o<% end %>"></span>
@@ -23,7 +23,7 @@
   </div>
 
   <% book.courses.each do |course| %>
-      <span class="course col m1 s12"><%= course.acronym %></span>
+      <span class="course btn red darken-1 col m1 s12"><%= course.acronym %></span>
   <% end %>
 
   <div class="price col l2 offset-l2 s3 offset-s4">

@@ -11,26 +11,33 @@
     </div>
     <% end %>
 
-    <div class="form-group col-lg-2 col-xs-4">
-      <%= f.label :acronym, 'Sigle du cours', class: 'control-label' %>
-      <%= f.text_field :acronym, {:class => 'form-control', :placeholder => 'Ex : MAT145'} %>
+    <div class="row">
+
+        <div class="input-field col s12">
+          <%= f.text_field :acronym, {:class => ''} %>
+          <%= f.label :acronym, 'Sigle du cours', class: '' %>
+        </div>
+
+        <div class="input-field col s12">
+          <%= f.label :name, 'Nom du cours', class: '' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="input-field col s12">
+          <%= f.select :program, options_from_collection_for_select(Program.all, :id, :name) %>
+          <%= f.label :program, 'Programme' %>
+        </div>
+
+        <div class="input-field col s12">
+          <% if @course.new_record? %>
+              <%= f.submit 'Ajouter le cours', class: 'btn red darken-1' %>
+          <% else %>
+              <%= f.submit 'Modifier le cours', class: 'btn red darken-1' %>
+          <% end %>
+        </div>
     </div>
 
-    <div class="form-group col-lg-12 col-xs-12">
-        <%= f.label :name, 'Nom du cours', class: 'control-label' %>
-        <%= f.text_field :name, class: 'form-control' %>
-    </div>
-
-    <div class="form-group col-lg-12 col-xs-12">
-        <%= f.label :program, 'Programme', class: 'control-label' %>
-        <%= f.select :program, options_from_collection_for_select(Program.all, :id, :name), {}, {:class => 'form-control'} %>
-    </div>
-
-    <div class="actions col-lg-12 col-xs-12">
-      <% if @course.new_record? %>
-          <%= f.submit 'Ajouter le cours', class: 'btn btn-primary' %>
-      <% else %>
-          <%= f.submit 'Modifier le cours', class: 'btn btn-primary' %>
-      <% end %>
-    </div>
+    <script>
+      $('select').material_select();
+    </script>
 <% end %>

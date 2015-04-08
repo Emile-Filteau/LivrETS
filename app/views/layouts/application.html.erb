@@ -26,37 +26,26 @@
   <link rel="stylesheet" href="/js/jquery-ui-1.11.2.custom/jquery-ui.structure.css"/>
   <link rel="stylesheet" href="/js/jquery-ui-1.11.2.custom/jquery-ui.theme.css"/>
 </head>
-<body>
+<body class="grey lighten-3">
 
-<nav class="light-blue">
+<nav class="red darken-1">
   <div class="container nav-wrapper">
     <%= link_to 'LivrETS', root_path, class: 'brand-logo' %>
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     <ul id="nav-desktop" class="right hide-on-med-and-down">
-      <li><a href="#" onclick="$('#searchbar').slideDown()"><i class="mdi-action-search"></i></a></li>
-      <li><%= link_to raw('<i class="mdi-content-add"></i>'), new_book_path %></li>
+      <li><%= link_to raw('<i class="mdi-content-add left"></i>Ajouter un livre'), new_book_path, class: 'add_book_link' %></li>
     </ul>
 
-    <ul id="nav-mobile" class="side-nav">
-      <li>
-        <form action="<%= book_path(:search) %>" method="get">
-          <div class="input-field">
-            <input id="search" type="search" required name="q" placeholder="Nom du livre, Sigle de cours...">
-            <label for="search"><i class="mdi-action-search black-text"></i></label>
-            <i class="mdi-navigation-close"></i>
-          </div>
-        </form>
-      </li>
-      <li><%= link_to raw('<i class="mdi-content-add left"></i>Ajouter un livre'), new_book_path %></li>
+    <ul id="nav-mobile" class="right hide-on-large-only">
+      <li><%= link_to raw('<i class="mdi-content-add"></i>'), new_book_path %></li>
     </ul>
 
   </div>
 </nav>
-<nav class="blue darken-1 hiddendiv" id="searchbar">
+<nav class="grey darken-2" id="searchbar">
   <div class="container nav-wrapper">
     <form action="<%= book_path(:search) %>" method="get">
       <div class="input-field">
-        <input id="search" type="search" required name="q" placeholder="Nom du livre, Sigle de cours...">
+        <input id="search" type="search" required name="q" placeholder="Recherche par nom de cours ou sigle">
         <label for="search"><i class="mdi-action-search black-text"></i></label>
         <i class="mdi-navigation-close"></i>
       </div>
