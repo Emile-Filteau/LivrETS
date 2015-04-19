@@ -146,6 +146,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri (~> 1.6.6.2)
   paperclip (~> 4.2)
   pg
   puma
