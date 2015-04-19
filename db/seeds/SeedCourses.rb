@@ -1,35 +1,46 @@
-#encoding: utf-8
+# encoding: utf-8
 # Script to get the list of courses from etsmtl.ca
-# Ugly, but it works... for now.
-# Change curl to mechanize !
+require 'rubygems'
+require 'nokogiri'
+require 'open-uri'
 
-source = `curl http://www.etsmtl.ca/Programmes-Etudes/Cours-horaires/Cours-horaires-1er-cycle/Cours-par-sigle?sigle=*`
+# The url where the courses list is available
+url = 'http://etsmtl.ca/Programmes-Etudes/Cours-horaires/Cours-horaires-1er-cycle/Cours-par-sigle?sigle=*'
 
-list_courses_source = source.split('<table class="ListeCoursGrille" cellspacing="0" cellpadding="0" border="0" id="plc_lt_zoneMain_pageplaceholder_pageplaceholder_lt_zoneContent_pageplaceholder_pageplaceholder_lt_zoneCenter_pageplaceholder_pageplaceholder_lt_zoneCenter_ListeCoursParSigle_GridViewResultats" style="border-collapse:collapse;">')[1].split('</table>')[0];
-
-list_courses_acronyms = list_courses_source.scan(/Fiche-de-cours\?Sigle=(.*)"/)
-list_courses_names = list_courses_source.scan(/ListeCoursGrilleCol2">\s*(.*)\s*<\/td>/)
-
-Program.delete_all
+# Create missing programs
+programs_info = {
+  "SEG" => {:name => "Enseignement généraux", :color => '#000000'},
+  "LOG" => {:name => "Génie logiciel", :color => '#000000'},
+  "CTN" => {:name => 'Génie de la construction', :color => '#000000'},
+  "ELE" => {:name => "Génie électrique", :color => '#000000'},
+  "MEC" => {:name => "Génie mécanique", :color => '#000000'},
+  "GPA" => {:name => "Génie de la production automatisée", :color => '#000000'},
+  "GOL" => {:name => "Génie des opérations et de la logistique", :color => '#000000'},
+  "GTI" => {:name => "Génie des technologies de l'information", :color => '#000000'},
+}
 programs = Hash[]
-programs["SEG"] = Program.create!(:acronym => 'SEG', :name => 'Enseignement généraux', :color => '#000000')
-programs["LOG"] = Program.create!(:acronym => 'LOG', :name => 'Génie logiciel', :color => '#000000')
-programs["CTN"] = Program.create!(:acronym => 'CTN', :name => 'Génie de la construction', :color => '#000000')
-programs["ELE"] = Program.create!(:acronym => 'ELE', :name => 'Génie électrique', :color => '#000000')
-programs["MEC"] = Program.create!(:acronym => 'MEC', :name => 'Génie mécanique', :color => '#000000')
-programs["GPA"] = Program.create!(:acronym => 'GPA', :name => 'Génie de la production automatisée', :color => '#000000')
-programs["GOL"] = Program.create!(:acronym => 'GOL', :name => 'Génie des opérations et de la logistique', :color => '#000000')
-programs["GTI"] = Program.create!(:acronym => 'GTI', :name => 'Génie des technologies de l\'information', :color => '#000000')
-
-Course.delete_all
-list_courses_acronyms.zip( list_courses_names ).each do |acronym,name|
-  acronym = acronym[0].strip
-  name = name[0].strip
-  program_acronym = acronym[0..2]
-  program = programs["SEG"]
-  if programs.has_key?(program_acronym)
-    program = programs[program_acronym]
+programs_info.each do |acronym, program_info|
+  program = Program.find_by(:acronym => acronym)
+  if not program
+    program = Program.create!(:acronym => acronym, :name => program_info[:name], :color => program_info[:color])
+    puts "Created program #{acronym} (#{program_info[:name]})"
   end
-  course = Course.create!(:acronym => acronym, :name => name, :program => program)
-  puts "Created course #{acronym} (#{name}) in program #{program.acronym}"
+  programs[acronym] = program
+end
+
+# Create missing courses
+page = Nokogiri::HTML(open(url, "Accept-Encoding" => "inflate"))
+liste_cours_html = page.css('.ListeCoursGrille tr')
+liste_cours_html.each do |cours_html|
+  acronym = cours_html.css('.ListeCoursGrilleCol1 a').text.strip
+  name = cours_html.css('.ListeCoursGrilleCol2').text.strip
+  if not Course.exists?(:acronym=>acronym)
+    program_acronym = acronym[0..2]
+    program = programs["SEG"]
+    if programs.has_key?(program_acronym)
+      program = programs[program_acronym]
+    end
+    course = Course.create!(:acronym => acronym, :name => name, :program => program)
+    puts "Created course #{acronym} (#{name}) in program #{program.acronym}"
+  end
 end
