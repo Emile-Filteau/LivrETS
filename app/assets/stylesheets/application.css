@@ -141,3 +141,11 @@ nav #search {
 .category-title {
     margin-left:-9px;
 }
+
+div.card-panel{
+    padding: 0;
+}
+
+.card-panel a .book_infos{
+   padding: 20px;
+}
