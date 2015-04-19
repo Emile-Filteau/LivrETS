@@ -1,7 +1,7 @@
 <%= form_for(@book, :html => {class: 'form-horizontal'}) do |f| %>
   <% if @book.errors.any? %>
     <div class="alert alert-danger">
-      <h2>Il y a <%= pluralize(@book.errors.count, "érreur") %> dans le formulaire:</h2>
+      <h2>Il y a <%= pluralize(@book.errors.count, "erreur") %> dans le formulaire:</h2>
       <ul>
       <% @book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
