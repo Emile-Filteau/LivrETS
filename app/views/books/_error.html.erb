@@ -1,6 +1,5 @@
 <% if error %>
-    <div class="alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= error %>
-    </div>
+    <script type="text/javascript">
+        Materialize.toast('<%= error %>', 4000)
+    </script>
 <% end %>

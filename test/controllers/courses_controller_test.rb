@@ -26,7 +26,7 @@ class CoursesControllerTest < ActionController::TestCase
   test "should create course" do
     @program = programs(:one)
     assert_difference('Course.count') do
-      post :create, course: { acronym: @course.acronym, name: @course.name, program_id: programs(:one).id }
+      post :create, course: { acronym: @course.acronym, name: @course.name, program: programs(:one).id }
     end
 
     assert_redirected_to course_path(assigns(:course))

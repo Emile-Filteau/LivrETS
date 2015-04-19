@@ -31,7 +31,8 @@ class CoursesController < ApplicationController
 
   # POST /courses
   def create
-    @course = Course.new(course_params)
+    program = Program.find(course_params[:program])
+    @course = program.courses.create(acronym:course_params[:acronym], name:course_params[:name])
 
     respond_to do |format|
       if @course.save
