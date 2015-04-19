@@ -24,21 +24,21 @@
       <%= f.text_field :edition , html_options = {class: ''}%>
       <%= f.label :edition, 'Édition', html_options = {class: 'col s12'} %>
     </div>
-    <div class="input-field col s12">
+    <div class=" col s12">
+      <%= f.label :course, '* Cours', html_options = {class: 'col s12 state_label'} %>
       <%= f.text_area :courses , html_options = {class: 'course_selector materialize-textarea'} %>
-      <%= f.label :course, '* Cours', html_options = {class: 'col s12'} %>
     </div>
-    <div class="input-field col s12">
-        <div class="stars col l12 s12">
-          <span star_amount="1" class="state_star fa fa-lg col l2 s2 offset-s1 offset-l2 <% if @book.state and @book.state >= 1 %>fa-star<% else %>fa-star-o<% end %>"></span>
+    <div class="row col s12">
+        <%= f.label :state, '* État', html_options = {class: 'col s12 state_label'} %>
+        <div class="stars col l12 s12 center-align">
+          <span star_amount="1" class="state_star fa fa-lg col l2 s2 offset-s1 offset-l1 <% if @book.state and @book.state >= 1 %>fa-star<% else %>fa-star-o<% end %>"></span>
           <span star_amount="2" class="state_star fa fa-lg col l2 s2 <% if @book.state and @book.state >= 2 %>fa-star<% else %>fa-star-o<% end %>"></span>
           <span star_amount="3" class="state_star fa fa-lg col l2 s2 <% if @book.state and @book.state >= 3 %>fa-star<% else %>fa-star-o<% end %>"></span>
           <span star_amount="4" class="state_star fa fa-lg col l2 s2 <% if @book.state and @book.state >= 4 %>fa-star<% else %>fa-star-o<% end %>"></span>
           <span star_amount="5" class="state_star fa fa-lg col l2 s2 <% if @book.state and @book.state >= 5 %>fa-star<% else %>fa-star-o<% end %>"></span>
         </div>
-        <%= f.label :state, '* État', html_options = {class: 'col s12'} %>
 
-        <%= f.hidden_field :state, html_options = {class: 'state_input'} %>
+      <%= f.hidden_field :state, html_options = {class: 'state_input'} %>
     </div>
 
     <div class="input-field col s12">
@@ -86,14 +86,16 @@
         $(document).ready(function () {
             $(".course_selector").tokenInput("<%= search_courses_path %>", {
                 'theme': 'facebook',
-                tokenFormatter: function(item) {return "<li><p>" + item.name.split(' ')[0] + "</p></li>"},
+                tokenFormatter: function(item) {
+                    return "<li>" + item.name.split(' ')[0] + "</li>"
+                },
                 preventDuplicates: true,
                 hintText: 'Chercher un cours',
                 noResultsText: 'Aucuns résultats',
                 searchingText: 'Recherche en cours...'
             });
 
-            $('.token-input-list-facebook').addClass('custom_token_selector').addClass('form-control')
+            $('.token-input-list-facebook').addClass('custom_token_selector')
 
             <% for course in @book.courses %>
                 $('.course_selector').tokenInput("add", {id: <%= course.id %>, name: "<%= course.acronym %>"})
