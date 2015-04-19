@@ -1,6 +1,6 @@
 <h5 class="center category-title">Catégories</h5>
-<ul class="categories row col s12 l10 offset-l2">
+<div class="categories row col s12 l10 offset-l2">
   <% Program.all.order('acronym').each do |program| %>
-      <li class="btn red darken-1 col offset-s1 s4 l1"><%= link_to program.acronym, book_path(:search, {:q => program.acronym}), class: 'white-text' %></li>
+      <%= link_to program.acronym, book_path(:search, {:q => program.acronym}), class: 'btn red darken-2 col offset-s1 s4 l1 white-text' %>
   <% end %>
-</ul>
+</div>

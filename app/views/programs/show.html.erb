@@ -3,5 +3,5 @@
 <h2><%= "#{@program.acronym} : #{@program.name}" %></h2>
 <h3>Nombre de cours : <%= @program.courses.length %></h3>
 
-<%= link_to 'Modifier', edit_program_path(@program), class: 'btn grey darken-2' %>
-<%= link_to 'Supprimer', programs_path, class: 'btn red' %>
+<%= link_to 'Modifier', edit_program_path(@program), class: 'btn red darken-2' %>
+<%= link_to 'Supprimer', @program, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir détruire ce programme?' }, class: 'btn grey darken-2' %>

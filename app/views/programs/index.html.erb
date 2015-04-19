@@ -1,6 +1,6 @@
 <h1>Liste des programmes</h1>
 
-<%= link_to 'Nouveau programme', new_program_path, class: 'btn red darken-1' %>
+<%= link_to 'Nouveau programme', new_program_path, class: 'btn red darken-2' %>
 
 <table class="table table-striped">
   <thead>
@@ -18,7 +18,7 @@
         <td><%= program.acronym %></td>
         <td><%= program.name %></td>
         <td><%= program.courses.length %></td>
-        <td><%= link_to 'Voir', program, class: 'btn red darken-1' %></td>
+        <td><%= link_to 'Voir', program, class: 'btn red darken-2' %></td>
       </tr>
     <% end %>
   </tbody>

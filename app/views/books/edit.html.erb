@@ -1,9 +1,9 @@
 <h4>Modification du livre</h4>
 
 <% if not @book.activated %>
-    <a href="<%= url_for @book %>/activate?code=<%= params['code'] %>" class="btn red darken-1">Activer</a>
+    <a href="<%= url_for @book %>/activate?code=<%= params['code'] %>" class="btn red darken-2">Activer</a>
 <% end %>
 <%= link_to 'Détruire', book_path(@book) + '?code=' + params['code'], method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir détruire cette annonce?' }, class: 'btn grey darken-2' %>
-<%= link_to 'Voir l\'annonce', @book, class: 'btn red darken-1' %>
+<%= link_to 'Voir l\'annonce', @book, class: 'btn red darken-e' %>
 
 <%= render 'form' %>

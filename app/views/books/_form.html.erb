@@ -48,7 +48,7 @@
 
       <div class="file-field input-field col s12 row">
         <input class="file-path validate col s10 offset-s2  " type="text"/>
-        <div class="btn red darken-1">
+        <div class="btn red darken-2">
           <span>Photo</span>
           <%= f.file_field :photo , html_options = {class: 'file-path validate'}%>
           <input type="file" />
@@ -76,9 +76,9 @@
 
     <div class="actions">
       <% if @book.new_record? %>
-        <%= f.submit 'Ajouter le livre', html_options = {class: 'btn red darken-1'} %>
+        <%= f.submit 'Ajouter le livre', html_options = {class: 'btn red darken-2'} %>
       <% else %>
-        <%= f.submit 'Sauvegarder', html_options = {class: 'btn red darken-1'} %>
+        <%= f.submit 'Sauvegarder', html_options = {class: 'btn red darken-2'} %>
       <% end %>
     </div>
 

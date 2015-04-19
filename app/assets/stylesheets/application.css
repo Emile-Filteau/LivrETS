@@ -186,13 +186,9 @@ nav #search {
     margin-bottom:10px;
 }
 
-.categories li {
+.categories a {
     margin-right:10px;
     margin-bottom:10px;
-}
-
-.categories a {
-    color:white;
 }
 
 .state_star {
