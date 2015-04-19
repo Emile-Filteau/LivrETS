@@ -92,26 +92,26 @@ nav #search {
     -ms-transition: .2s ease-out !important;
     transition: .2s ease-out !important;
     cursor: pointer !important;
-    width:10% !important;
     font-size: inherit !important;
     float:left;
+    position:relative;
+}
+
+.token-input-delete-token-facebook {
+    font-size:20px !important;
+    color:white !important;
+    position:absolute;
+    right:10px;
+    top:-2px;
+}
+
+.token-input-token-facebook.token-input-selected-token-facebook {
+    background-color: #B71C1C !important;
 }
 
 .custom_token_selector .token-input-input-token-facebook input {
     background-color: transparent !important;
     transition-duration: 0s;
-}
-
-.custom_dropdown ul {
-    background-color: #FFFFFF !important;
-    margin: 0 !important;
-    display: none !important;
-    min-width: 100px !important;
-    max-height: 650px !important;
-    overflow-y: auto !important;
-    white-space: nowrap;
-    z-index: 1;
-    will-change: width, height !important;
 }
 
 .custom_token_selector li {

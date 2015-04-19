@@ -78,7 +78,7 @@
       <% if @book.new_record? %>
         <%= f.submit 'Ajouter le livre', html_options = {class: 'btn red darken-1'} %>
       <% else %>
-        <%= f.submit 'Modifier le livre', html_options = {class: 'btn red darken-1'} %>
+        <%= f.submit 'Sauvegarder', html_options = {class: 'btn red darken-1'} %>
       <% end %>
     </div>
 
@@ -87,7 +87,7 @@
             $(".course_selector").tokenInput("<%= search_courses_path %>", {
                 'theme': 'facebook',
                 tokenFormatter: function(item) {
-                    return "<li>" + item.name.split(' ')[0] + "</li>"
+                    return "<li class='col l2 s12'>" + item.name.split(' ')[0] + "</li>"
                 },
                 preventDuplicates: true,
                 hintText: 'Chercher un cours',
@@ -96,6 +96,7 @@
             });
 
             $('.token-input-list-facebook').addClass('custom_token_selector')
+            $('.token-input-input-token-facebook').addClass('col l2 s12')
 
             <% for course in @book.courses %>
                 $('.course_selector').tokenInput("add", {id: <%= course.id %>, name: "<%= course.acronym %>"})
