@@ -1,9 +1,9 @@
-<h1>Editing book</h1>
+<h4>Modification du livre</h4>
 
-<%= link_to 'Détruire', book_path(@book) + '?code=' + params['code'], method: :delete, data: { confirm: 'Êtes-vous sûr?' } %>
-<!--<a data-confirm="Es-tu certain?" data-method="DELETE" href="<%= url_for @book %>?code=<%= params['code'] %>">Détruire</a>--> |
-<a href="<%= url_for @book %>/activate?code=<%= params['code'] %>">Activer</a> |
-<%= link_to 'Voir l\'annonce', @book %> |
-<%= link_to 'Back', books_path %>
+<% if not @book.activated %>
+    <a href="<%= url_for @book %>/activate?code=<%= params['code'] %>" class="btn red darken-2">Activer</a>
+<% end %>
+<%= link_to 'Détruire', book_path(@book) + '?code=' + params['code'], method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir détruire cette annonce?' }, class: 'btn grey darken-2' %>
+<%= link_to 'Voir l\'annonce', @book, class: 'btn red darken-e' %>
 
 <%= render 'form' %>

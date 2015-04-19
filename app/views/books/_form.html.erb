@@ -1,4 +1,5 @@
-<%= form_for(@book, :html => {class: 'form-horizontal'}) do |f| %>
+<div class="row">
+<%= form_for(@book, :html => {class: 'col s12'}) do |f| %>
   <% if @book.errors.any? %>
     <div class="alert alert-danger">
       <h2>Il y a <%= pluralize(@book.errors.count, "erreur") %> dans le formulaire:</h2>
@@ -10,108 +11,92 @@
     </div>
   <% end %>
 
-  <div class="book_full_form well">
-    <div class="book_form">
-        <h2>Infos sur le livre</h2>
-        <div class="form-group">
-            <%= f.label :name, '* Titre', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="col-sm-10">
-                <%= f.text_field :name, html_options = {class: 'form-control'} %>
-            </div>
-        </div>
-        <div class="form-group">
-            <%= f.label :author, 'Auteur', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="col-sm-10">
-                <%= f.text_field :author, html_options = {class: 'form-control'} %>
-            </div>
-        </div>
-        <div class="form-group">
-            <%= f.label :edition, 'Édition', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="col-sm-10">
-                <%= f.text_field :edition , html_options = {class: 'form-control'}%>
-            </div>
-        </div>
-        <div class="form-group">
-            <%= f.label :course, '* Cours', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="col-sm-10">
-              <%= f.text_area :courses , html_options = {class: 'form-control course_selector'} %>
-            </div>
-        </div>
-        <div class="form-group">
-            <%= f.label :state, '* État', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="stars col-lg-12 col-xs-12">
-              <span star_amount="1" class="state_star fa fa-lg col-lg-2 col-xs-2 col-xs-offset-1 col-lg-offset-2 <% if @book.state and @book.state >= 1 %>fa-star<% else %>fa-star-o<% end %>"></span>
-              <span star_amount="2" class="state_star fa fa-lg col-lg-2 col-xs-2 <% if @book.state and @book.state >= 2 %>fa-star<% else %>fa-star-o<% end %>"></span>
-              <span star_amount="3" class="state_star fa fa-lg col-lg-2 col-xs-2 <% if @book.state and @book.state >= 3 %>fa-star<% else %>fa-star-o<% end %>"></span>
-              <span star_amount="4" class="state_star fa fa-lg col-lg-2 col-xs-2 <% if @book.state and @book.state >= 4 %>fa-star<% else %>fa-star-o<% end %>"></span>
-              <span star_amount="5" class="state_star fa fa-lg col-lg-2 col-xs-2 <% if @book.state and @book.state >= 5 %>fa-star<% else %>fa-star-o<% end %>"></span>
-            </div>
-
-            <%= f.hidden_field :state, html_options = {class: 'state_input'} %>
+    <h5>Information du livre</h5>
+    <div class="input-field col s12">
+      <%= f.text_field :name, html_options = {class: ''} %>
+      <%= f.label :name, '* Titre', html_options = {class: 'col s12'} %>
+    </div>
+    <div class="input-field col m6 s12">
+      <%= f.text_field :author, html_options = {class: ''} %>
+      <%= f.label :author, 'Auteur', html_options = {class: 'col s12'} %>
+    </div>
+    <div class="input-field col m6 s12">
+      <%= f.text_field :edition , html_options = {class: ''}%>
+      <%= f.label :edition, 'Édition', html_options = {class: 'col s12'} %>
+    </div>
+    <div class=" col s12">
+      <%= f.label :course, '* Cours', html_options = {class: 'col s12 state_label'} %>
+      <%= f.text_area :courses , html_options = {class: 'course_selector materialize-textarea'} %>
+    </div>
+    <div class="row col s12">
+        <%= f.label :state, '* État', html_options = {class: 'col s12 state_label'} %>
+        <div class="stars col l12 s12 center-align">
+          <span star_amount="1" class="state_star fa fa-lg col l2 s2 offset-s1 offset-l1 <% if @book.state and @book.state >= 1 %>fa-star<% else %>fa-star-o<% end %>"></span>
+          <span star_amount="2" class="state_star fa fa-lg col l2 s2 <% if @book.state and @book.state >= 2 %>fa-star<% else %>fa-star-o<% end %>"></span>
+          <span star_amount="3" class="state_star fa fa-lg col l2 s2 <% if @book.state and @book.state >= 3 %>fa-star<% else %>fa-star-o<% end %>"></span>
+          <span star_amount="4" class="state_star fa fa-lg col l2 s2 <% if @book.state and @book.state >= 4 %>fa-star<% else %>fa-star-o<% end %>"></span>
+          <span star_amount="5" class="state_star fa fa-lg col l2 s2 <% if @book.state and @book.state >= 5 %>fa-star<% else %>fa-star-o<% end %>"></span>
         </div>
 
-        <div class="form-group">
-            <%= f.label :price, '* Prix', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="col-sm-10">
-              <%= f.number_field :price , html_options = {class: 'form-control'}%>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <%= f.label :photo, 'Photo', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="col-sm-10">
-              <%= f.file_field :photo , html_options = {class: 'form-control'}%>
-            </div>
-        </div>
+      <%= f.hidden_field :state, html_options = {class: 'state_input'} %>
     </div>
 
-    <div class="seller_form">
-        <h2>Informations du vendeur</h2>
-        <div class="form-group">
-            <%= f.label :contact_name, '* Nom', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="col-sm-10">
-                <%= f.text_field :contact_name , html_options = {class: 'form-control'}%>
-            </div>
+    <div class="input-field col s12">
+      <%= f.number_field :price , html_options = {class: ''}%>
+      <%= f.label :price, '* Prix', html_options = {class: 'col s12'} %>
+    </div>
+
+      <div class="file-field input-field col s12 row">
+        <input class="file-path validate col s10 offset-s2  " type="text"/>
+        <div class="btn red darken-2">
+          <span>Photo</span>
+          <%= f.file_field :photo , html_options = {class: 'file-path validate'}%>
+          <input type="file" />
         </div>
-        <div class="form-group">
-            <%= f.label :email, '* Courriel', html_options = {class: 'col-sm-1 control-label'} %>
-            <div class="col-sm-10">
-                <%= f.email_field :email , html_options = {class: 'form-control'}%>
-                <i>Vous devez valider votre courriel, il ne sera pas affiché</i>
-            </div>
-        </div>
-        <div class="form-group">
-              <%= f.label :contact_phone, 'Téléphone', html_options = {class: 'col-sm-1 control-label'} %>
-              <div class="col-sm-10">
-                <%= f.phone_field :contact_phone , html_options = {class: 'form-control'}%>
-                <i>Votre numéro de téléphone sera affiché</i>
-              </div>
-        </div>
+      </div>
+
+    <h5>Informations du vendeur</h5>
+    <div class="input-field">
+      <%= f.text_field :contact_name , html_options = {class: ''}%>
+      <%= f.label :contact_name, '* Nom', html_options = {class: 'col s12'} %>
+    </div>
+
+    <div class="input-field">
+      <%= f.email_field :email , html_options = {class: ''}%>
+      <%= f.label :email, '* Courriel', html_options = {class: 'col s12'} %>
+      <i>Vous devez valider votre courriel, il ne sera pas affiché</i>
+    </div>
+    <div class="input-field">
+      <%= f.phone_field :contact_phone , html_options = {class: ''}%>
+      <%= f.label :contact_phone, 'Téléphone', html_options = {class: 'col s12'} %>
+      <i>Votre numéro de téléphone sera affiché</i>
     </div>
 
     <input type="hidden" name="code" value="<%= params['code'] %>" />
 
     <div class="actions">
       <% if @book.new_record? %>
-        <%= f.submit 'Ajouter le livre', html_options = {class: 'btn btn-primary'} %>
+        <%= f.submit 'Ajouter le livre', html_options = {class: 'btn red darken-2'} %>
       <% else %>
-        <%= f.submit 'Modifier le livre', html_options = {class: 'btn btn-primary'} %>
+        <%= f.submit 'Sauvegarder', html_options = {class: 'btn red darken-2'} %>
       <% end %>
     </div>
-  </div>
 
     <script>
         $(document).ready(function () {
             $(".course_selector").tokenInput("<%= search_courses_path %>", {
                 'theme': 'facebook',
-                tokenFormatter: function(item) {return "<li><p>" + item.name.split(' ')[0] + "</p></li>"},
+                tokenFormatter: function(item) {
+                    return "<li class='col l2 s12'>" + item.name.split(' ')[0] + "</li>"
+                },
                 preventDuplicates: true,
                 hintText: 'Chercher un cours',
                 noResultsText: 'Aucuns résultats',
                 searchingText: 'Recherche en cours...'
             });
 
-            $('.token-input-list-facebook').addClass('custom_token_selector').addClass('form-control')
+            $('.token-input-list-facebook').addClass('custom_token_selector')
+            $('.token-input-input-token-facebook').addClass('col l2 s12')
 
             <% for course in @book.courses %>
                 $('.course_selector').tokenInput("add", {id: <%= course.id %>, name: "<%= course.acronym %>"})
@@ -136,3 +121,4 @@
     </script>
 
 <% end %>
+</div>

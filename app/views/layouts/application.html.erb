@@ -5,17 +5,18 @@
   <meta name="google-site-verification" content="N-V_kBd8eYpoHs_X_ToBvsaI3bl49hABNVizXxe62XI" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-  <%= stylesheet_link_tag    'bootstrap.min', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'materialize.min', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'token-input', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'token-input-facebook', media: 'all', 'data-turbolinks-track' => true %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <%= javascript_include_tag 'jquery.min', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'materialize.min', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <%= javascript_include_tag 'jquery.tokeninput', 'data-turbolinks-track' => true %>
+  <%= favicon_link_tag 'favicon.png' %>
 
   <%= csrf_meta_tags %>
 
@@ -26,24 +27,32 @@
   <link rel="stylesheet" href="/js/jquery-ui-1.11.2.custom/jquery-ui.structure.css"/>
   <link rel="stylesheet" href="/js/jquery-ui-1.11.2.custom/jquery-ui.theme.css"/>
 </head>
-<body>
+<body class="grey lighten-5">
 
-<div class="container">
-  <h1 class="title"><%= link_to 'LivrETS', root_path %></h1>
+<nav class="red darken-2">
+  <div class="container nav-wrapper">
+    <%= link_to 'LivrETS', root_path, class: 'brand-logo' %>
+    <ul id="nav-desktop" class="right hide-on-med-and-down">
+      <li><%= link_to raw('<i class="mdi-content-add left"></i>Ajouter un livre'), new_book_path, class: 'add_book_link' %></li>
+    </ul>
 
-  <%= link_to raw('<span class="fa fa-plus"></span> Ajouter un livre'), new_book_path, html_options = {class: 'btn btn-success add_button'} %>
-  <div class="clear"></div>
-</div>
+    <ul id="nav-mobile" class="right hide-on-large-only">
+      <li><%= link_to raw('<i class="mdi-content-add"></i>'), new_book_path %></li>
+    </ul>
 
-<div class="container">
+  </div>
+</nav>
+<nav class="grey darken-1" id="searchbar">
+  <div class="container nav-wrapper">
     <form action="<%= book_path(:search) %>" method="get">
-      <div class="input-group">
-        <input type="text" class="form-control" name="q" id="search" placeholder="Sigle, Nom du livre...">
-          <span class="input-group-btn"><button class="btn btn-ar btn-primary" type="submit" value="Recherche">Recherche</button>
-            </span>
+      <div class="input-field">
+        <input id="search" type="search" required name="q" placeholder="Recherche par nom de cours ou sigle">
+        <label for="search"><i class="mdi-action-search black-text"></i></label>
+        <i class="mdi-navigation-close"></i>
       </div>
     </form>
-</div>
+  </div>
+</nav>
 
 <div class="container">
     <%= yield %>

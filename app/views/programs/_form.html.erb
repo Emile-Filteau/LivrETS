@@ -11,7 +11,23 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_field :acronym %>
+          <%= f.label :acronym, 'Sigle du programme' %>
+        </div>
+
+        <div class="input-field col s12">
+          <%= f.label :name, 'Nom du programme' %>
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="input-field col s12">
+          <% if @program.new_record? %>
+              <%= f.submit 'Ajouter le programme', class: 'btn red darken-2' %>
+          <% else %>
+              <%= f.submit 'Modifier le programme', class: 'btn red darken-2' %>
+          <% end %>
+        </div>
+    </div>
 <% end %>

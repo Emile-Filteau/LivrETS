@@ -1,12 +1,13 @@
 <%= render 'notice'%>
 <%= render 'error' %>
 
-<div class="col-lg-10 col-lg-push-2 col-xs-12">
-  <h2>Livres récents</h2>
-  <%= render 'books', books: @books %>
-</div>
+<div class="row">
+    <div class="col s12">
+      <h4>Livres récents</h4>
+      <%= render 'books', books: @books %>
+    </div>
 
-
-<div class="col-lg-2 col-lg-pull-10 col-xs-12">
-  <%= render 'categories' %>
+    <div class="col s12">
+        <%= render 'categories' %>
+    </div>
 </div>

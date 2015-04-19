@@ -1,10 +1,6 @@
-<h2>Catégories</h2>
-<ul class="categories">
-  <li><%= link_to 'LOG', book_path(:search, {:q => 'LOG'}) %></li>
-  <li><%= link_to 'GTI', book_path(:search, {:q => 'GTI'}) %></li>
-  <li><%= link_to 'GOL', book_path(:search, {:q => 'GOL'}) %></li>
-  <li><%= link_to 'GPA', book_path(:search, {:q => 'GPA'}) %></li>
-  <li><%= link_to 'CTN', book_path(:search, {:q => 'CTN'}) %></li>
-  <li><%= link_to 'MEC', book_path(:search, {:q => 'MEC'}) %></li>
-  <li><%= link_to 'ÉLÉ', book_path(:search, {:q => 'ÉLÉ'}) %></li>
-</ul>
+<h5 class="center category-title">Catégories</h5>
+<div class="categories row col s12 l10 offset-l2">
+  <% Program.all.order('acronym').each do |program| %>
+      <%= link_to program.acronym, book_path(:search, {:q => program.acronym}), class: 'btn red darken-2 col offset-s1 s4 l1 white-text' %>
+  <% end %>
+</div>
