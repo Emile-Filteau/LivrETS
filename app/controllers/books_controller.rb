@@ -119,10 +119,18 @@ class BooksController < ApplicationController
 
   def contact
     infos = contact_params
-    UserMailer.contact_email(@book, infos['name'], infos['email'], infos['message']).deliver!
+    success = false
+    if not infos[:name].empty? and not infos[:message].empty? and not infos[:email].empty?
+      UserMailer.contact_email(@book, infos['name'], infos['email'], infos['message']).deliver!
+      success = true
+    end
 
     respond_to do |format|
-      format.html { redirect_to @book, notice: 'Votre message a été envoyé' }
+      if success
+        format.html { redirect_to @book, notice: 'Votre message a été envoyé' }
+      else
+        format.html { redirect_to @book, error: 'Vous devez remplir tous les champs'}
+      end
       format.json { render :show, status: :ok, location: @book }
     end
   end
