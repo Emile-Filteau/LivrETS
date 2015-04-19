@@ -1,5 +1,5 @@
 namespace :cleanup do
-  desc "Cleanup all books in the system that have not been activated for X hours."
+  desc "Cleanup all books in the system that have not been activated for 48 hours."
   task books: :environment do
     time_to_cleanup = 48.hours.ago
 
