@@ -18,13 +18,13 @@ class BooksController < ApplicationController
     program = Program.find_by_acronym params[:q].upcase
     if program
       program.courses.each do |course|
-        (books << course.books.order(created_at: :desc)).flatten!
+        (books << course.books.order(created_at: :desc).where(activated: true)).flatten!
       end
     end
 
     course = Course.find_by_acronym params[:q].upcase
     if course
-      (books << course.books.order(created_at: :desc)).flatten!
+      (books << course.books.order(created_at: :desc).where(activated: true)).flatten!
     else
       (books << Book.where('lower(name) like ? OR lower(author) like ?', "%#{params[:q].downcase}%", "%#{params[:q].downcase}%").where(activated: true).order(created_at: :desc)).flatten!
     end
