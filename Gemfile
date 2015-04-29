@@ -54,3 +54,5 @@ gem 'thin'
 gem 'valid_email'
 
 gem 'puma'
+
+gem 'newrelic_rpm'
